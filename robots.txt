@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /shared/
 Sitemap: https://sanmarcog.github.io/sitemap.xml
