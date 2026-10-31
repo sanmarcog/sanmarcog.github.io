@@ -1,0 +1,112 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=1cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=0.5em}
+\usepackage{xcolor}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usepackage[colorlinks = true,
+linkcolor = forestgreen,
+urlcolor  = forestgreen,
+citecolor = forestgreen,
+anchorcolor = forestgreen]{hyperref}
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{tikz}
+\usepackage{mathabx}
+\usepackage{lastpage}
+
+
+
+
+
+
+
+%% header, footer definitions
+\def\course{MATH 314}
+\def\courselink{https://www.gsanmarco.com/graph-theory}
+\def\assignment{HW \#13}
+\def\assignlink{hw13.tex}
+\def\due{Due on May 2}
+
+
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\course}
+\fancyhead[C]{\assignment} 
+\fancyhead[R]{\due} 
+%\renewcommand{\footrulewidth}{0.4pt}
+%\fancyfoot{}
+%\fancyfoot[R]{\fontsize{8}{10} \selectfont  Page \thepage~of \pageref{LastPage}}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont  Source file available at \href{\courselink}{\textbf{\courselink}}}
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{Solution}{Solution}
+% custom
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+
+\DeclareMathOperator{\diam}{diam}
+\newcommand*{\abs}[1]{\lvert #1\rvert}
+
+
+
+\begin{document}
+\noindent  Unless explicitly requested by a problem, do not include sketches as part of your proof. You are free to use the result from any problem on this (or previous) assignment as a part of your solution to a different problem even if you have not solved the former problem.
+\vskip10pt
+
+\begin{problem}[2pts]
+	Prove that $R(3,n)\leq n^2$ for every positive integer $n$.
+\end{problem}
+
+
+\begin{problem}[2pts]
+	The $3$-color Ramsey number $R(m,n,p)$ is the smallest integer $N$ such that every 3-coloring of $E(K_N)$ (say with colors red, blue and green) contains either a red copy of $K_m$, a blue copy of $K_n$ or a green copy of $K_p$.
+	\vskip5pt
+	
+	Prove that $R(3,3,3)\leq 17$.
+\end{problem}
+
+
+\begin{problem}[2pts]
+Suppose that $G$ is a graph that has no induced $K_{1,4}$ and such that $\omega(G) = 4$. Show that $\Delta(G)\leq 17$.
+
+Hint: $17+1=R(4,4)$.
+\end{problem}
+
+
+\begin{problem}[2pts]
+		Show that $N=7$ is the smallest integer $N$ such that every red,blue-coloring of $E(K_N)$ contains either a red $K_{1,3}$ or a blue copy of $K_3$.
+\end{problem}
+
+
+\begin{problem}[2 pts]
+	Let $n$ be a positive integer and set $N=3n-1$.
+		Construct a red,blue-coloring of $E(K_{N-1})$ which \emph{does not} contain a monochromatic matching with $n$ edges.
+		
+		Hint: Break $V(K_{N-1})$ into two pieces, one of size $2n-1$ and the other of size $n-1$, and color the edges based on how they intersect these two pieces.
+\end{problem}
+
+
+\end{document}
+
+
+
+

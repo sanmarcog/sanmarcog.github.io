@@ -1,0 +1,274 @@
+\section{Lecture 17 (February 24, 2025, est.): The Verlinde category}
+\label{lec17}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+Throughout this lecture, $k$ is algebraically closed of characteristic
+$p>0$. We apply semisimplification to representations of the cyclic group
+$C_p$. Recall that an indecomposable survives semisimplification precisely
+when its categorical dimension is nonzero, provided traces of nilpotent
+endomorphisms vanish. This hypothesis holds in representation categories,
+where the categorical trace is the ordinary linear trace.
+
+\subsection{Representations of the cyclic group}
+
+Choose a generator $\sigma$ of $C_p$. Writing $t=\sigma-1$ gives
+\[
+ k[C_p]=k[\sigma]/(\sigma^p-1)\cong k[t]/(t^p).
+\]
+Thus a representation is a vector space with a nilpotent endomorphism
+whose $p$th power is zero. Jordan normal form gives exactly $p$
+indecomposable representations:
+\[
+ J_n=k[t]/(t^n),\qquad 1\leq n\leq p.
+\]
+In particular, $J_1$ is the trivial representation and $J_p$ is the
+regular representation.
+
+\begin{definition}
+The \emph{Verlinde category} is the symmetric tensor category
+\[
+ \operatorname{Ver}_p=\overline{\Rep_k(C_p)}.
+\]
+Write $L_n$ for the image of $J_n$ in this semisimplification. Its simple
+objects are $L_1,\ldots,L_{p-1}$, with $L_1=\1$, whereas $L_p=0$.
+Their categorical dimensions are $\dim(L_n)=n\cdot1_k$.
+\end{definition}
+
+There are finitely many simples here, so $\operatorname{Ver}_p$ is a
+symmetric fusion category. Finiteness of the original group alone would
+not ensure this conclusion for its semisimplification: representation
+categories of other finite groups can have infinitely many surviving
+indecomposables. See \cite{EOSemisimplification} for examples and the
+general construction.
+
+\subsection{Tensor products of Jordan blocks}
+
+\begin{proposition}\label{prop:lec17-jordan-products}
+The $J_n$ are self-dual, and
+\[
+ J_2\otimes J_n\cong
+ \begin{cases}
+ J_2,&n=1,\\
+ J_{n-1}\oplus J_{n+1},&2\leq n\leq p-1,\\
+ J_p^{\oplus2},&n=p.
+ \end{cases}
+\]
+For $1\leq n\leq p-1$ one also has
+\[
+ J_{p-1}\otimes J_n\cong J_{p-n}\oplus J_p^{\oplus(n-1)}.
+\]
+\end{proposition}
+\begin{proof}
+On a dual representation, $\sigma$ acts by the inverse transpose.
+The inverse of a unipotent Jordan block is again a unipotent matrix with
+one Jordan block of the same size, proving self-duality.
+
+For the first tensor-product formula, identify the underlying vector
+space with $k[x,y]/(x^2,y^n)$. The generator acts by multiplication by
+$(1+x)(1+y)$. Set $u=x(1+y)$; this is an invertible change of variable,
+so the algebra is also $k[u,y]/(u^2,y^n)$, and $t$ acts by multiplication
+by $u+y$. Hence
+\[
+ t^r=y^r+r u y^{r-1}.
+\]
+For $2\leq n<p$, the nilpotency index is $n+1$, since
+$t^n=nuy^{n-1}\ne0$. Moreover, the kernel of multiplication by $t$
+has dimension two. Indeed, $t(A(y)+uB(y))=0$ means
+\[
+ yA=0,\qquad A+yB=0,
+\]
+so $A=ay^{n-1}$ and $B=-ay^{n-2}+by^{n-1}$. There are therefore two
+Jordan blocks; their sizes are $n+1$ and $n-1$ because the total
+dimension is $2n$. If $n=p$, the same kernel computation gives two
+blocks, each of size at most $p$, and their total size is $2p$.
+The case $n=1$ is immediate.
+
+Finally, tensor the exact sequence
+\[
+ 0\longrightarrow J_{p-1}\longrightarrow J_p
+ \longrightarrow J_1\longrightarrow0
+\]
+with $J_n$. The middle term is $J_p^{\oplus n}$: for any finite group,
+the regular representation tensored diagonally with $V$ is isomorphic
+to $\dim(V)$ copies of the regular representation, by the map
+$g\otimes v\mapsto g\otimes g^{-1}v$.
+A surjection $(k[t]/t^p)^n\to k[t]/t^n$ can be changed by an invertible
+basis transformation of its source to the standard quotient on its
+first factor and zero on the others. To see this, one of the images of
+the standard generators must have nonzero constant term; make it the
+first generator, multiply it by a unit to make its image $1$, and
+subtract suitable multiples of it from the remaining generators.
+The kernel is then
+$t^n(k[t]/t^p)\oplus(k[t]/t^p)^{n-1}$, as claimed.
+\end{proof}
+
+\begin{theorem}[Fusion rules]\label{thm:lec17-fusion}
+For $1\leq i,j\leq p-1$,
+\[
+ L_i\otimes L_j\cong
+ \bigoplus_{r=1}^{\min(i,j,p-i,p-j)}L_{|i-j|+2r-1}.
+\]
+In particular,
+\[
+ L_2\otimes L_n=L_{n-1}\oplus L_{n+1},\qquad
+ L_{p-1}\otimes L_n=L_{p-n},
+\]
+where $L_0=L_p=0$ in the first formula.
+\end{theorem}
+\begin{proof}
+The two displayed special cases follow from the proposition. For
+$p>2$, write $x=[L_2]$ in the Grothendieck ring and define polynomials
+$f_0=0$, $f_1=1$, $f_{n+1}=xf_n-f_{n-1}$. The recurrence gives
+$[L_n]=f_n(x)$ and $f_p(x)=0$.
+Induction using the same recurrence gives the polynomial identity
+\[
+ f_i(x)f_j(x)=\sum_{r=1}^{\min(i,j)}f_{|i-j|+2r-1}(x).
+\]
+Modulo $f_p(x)$ one has $f_{p+a}(x)=-f_{p-a}(x)$ for $a\geq0$ in
+the range in question. The terms above $p$ consequently cancel the
+reflected terms below $p$, and the term $f_p$ vanishes. The remaining
+indices start at $|i-j|+1$ and end at
+$\min(i+j-1,2p-i-j-1)$, giving the formula. Since the category is
+semisimple, equality of these classes is an isomorphism of objects.
+For $p=2$ there is only the simple unit, and the formula is immediate.
+\end{proof}
+
+These are the truncated Clebsch--Gordan rules also occurring in the
+semisimplified quantum $\mathfrak{sl}_2$ category at a primitive
+$2p$th root of unity in characteristic zero. This comparison concerns
+the fusion rules; the categories have different ground-field
+characteristics. For the positive-characteristic construction and
+fusion rules, see \cite[Section 3]{OstrikVerlinde}.
+
+\subsection{Small characteristics and failure of fiber functors}
+
+For $p=2$, the only surviving simple is the unit, so
+$\operatorname{Ver}_2\simeq\Vect_k$. For $p=3$, the simples are $L_1$
+and $L_2$, with $L_2^{\otimes2}=\1$. Its self-symmetry is $-1$:
+in $J_2\otimes J_2$, the alternating line is a copy of $J_1$ on which
+the flip is $-1$, whereas the symmetric square is $J_3$ and disappears.
+Thus $\operatorname{Ver}_3\simeq\SVec_k$.
+
+For $p=5$, the fusion rule gives
+\[
+ L_3\otimes L_3\cong\1\oplus L_3.
+\]
+If there were a symmetric fiber functor to $\SVec_k$, the total vector
+space dimension $n$ of the image of $L_3$ would be a positive integer
+satisfying $n^2=n+1$, which is impossible. Here one must use an ordinary
+nonnegative integer dimension, not the categorical dimension in $k$:
+the categorical dimension $3\in k$ does satisfy this equation in
+characteristic $5$.
+
+\begin{proposition}
+For every prime $p\geq5$, $\operatorname{Ver}_p$ has no fiber functor
+to $\Vect_k$ or to $\SVec_k$.
+\end{proposition}
+\begin{proof}
+Suppose such a functor exists, and let $d_i$ be the total dimension of
+the image of $L_i$. Faithfulness gives positive integers $d_i$ for
+$1\leq i\leq p-1$. Set $d_0=d_p=0$, $d_1=1$, and $d=d_2$.
+The fusion rules imply
+\[
+ d d_i=d_{i-1}+d_{i+1}\quad(1\leq i\leq p-1).
+\]
+Since $d^2=1+d_3\geq2$, one has $d\geq2$. Starting with
+$d_1-d_0=1$, the recurrence gives
+\[
+ d_{i+1}-d_i=(d-2)d_i+(d_i-d_{i-1})\geq1
+\]
+by induction, including the last step $i=p-1$. Thus $d_p\geq p$,
+contrary to $d_p=0$.
+\end{proof}
+
+\begin{example}[A characteristic-two obstruction]
+There are also symmetric tensor categories in characteristic $2$ with
+no fiber functor to $\Vect_k$, even though $\operatorname{Ver}_2$ itself
+is $\Vect_k$. Consider the Hopf algebra
+\[
+ H=k[d]/(d^2),\qquad \Delta(d)=d\otimes1+1\otimes d,
+\]
+with triangular structure $R=1\otimes1+d\otimes d$. The identities
+$(\Delta\otimes\id)(R)=R_{13}R_{23}$ and
+$(\id\otimes\Delta)(R)=R_{13}R_{12}$ follow by expanding and using
+$d^2=0$; also $R_{21}R=1$ because $2=0$. Thus the symmetry on
+$\Rep(H)$ is $c=\tau\circ R$, where $\tau$ is the usual flip.
+
+Let $X$ have basis $e,f$ with $de=0$ and $df=e$. Then
+\[
+ c(e\otimes e)=e\otimes e,\qquad
+ c(e\otimes f)=f\otimes e,\qquad
+ c(f\otimes f)=f\otimes f+e\otimes e.
+\]
+The image of $\id-c$ is spanned by $e\otimes e$ and
+$e\otimes f+f\otimes e$. Consequently
+$\Sym^2X=\operatorname{coker}(\id-c)$ is two-dimensional, with basis
+the classes of $e\otimes f$ and $f\otimes f$. The action of $d$ on
+both classes is zero, so $\Sym^2X\cong\1^{\oplus2}$.
+On the other hand, $X$ is an extension of $\1$ by $\1$. An exact
+symmetric fiber functor $F$ to $\Vect_k$ would give $\dim F(X)=2$
+and preserve this cokernel. This would imply both
+$\dim F(\Sym^2X)=2$ and
+$\dim\Sym^2(F(X))=3$, a contradiction.
+\end{example}
+
+\subsection{Tensor subcategories of the Verlinde category}
+
+Assume now that $p\geq5$. Let $\operatorname{Ver}_p^+$ be the full
+semisimple subcategory with simples
+\[
+ L_1,L_3,L_5,\ldots,L_{p-2}.
+\]
+The fusion rules show that it is closed under tensor products and
+duals, and that it is generated by $L_3$. More explicitly,
+$L_3\otimes L_{2r+1}$ contains $L_{2r+3}$ whenever
+$3\leq2r+3\leq p-2$, starting with $L_3$ itself.
+
+The object $\varepsilon=L_{p-1}$ is invertible of order two, with
+$\dim(\varepsilon)=-1$. For an invertible object in a symmetric
+category, the self-symmetry is its categorical dimension times the
+identity (compute the trace using its inverse object). Thus the
+subcategory generated by $\varepsilon$ is $\SVec_k$, with
+$\varepsilon$ corresponding to the odd line.
+
+\begin{proposition}\label{prop:lec17-subcategories}
+The full tensor subcategories of $\operatorname{Ver}_p$ are exactly
+\[
+ \Vect_k,\qquad \SVec_k,\qquad
+ \operatorname{Ver}_p^+,\qquad\operatorname{Ver}_p.
+\]
+Moreover, multiplication induces a symmetric equivalence
+\[
+ \SVec_k\boxtimes\operatorname{Ver}_p^+
+ \xrightarrow{\ \sim\ }\operatorname{Ver}_p.
+\]
+Here a full tensor subcategory is understood to be closed under finite
+direct sums and subobjects, and $\boxtimes$ denotes the product whose
+simple objects are pairs of simple objects of its factors.
+\end{proposition}
+\begin{proof}
+If a tensor subcategory contains $L_i$ with $2\leq i\leq p-2$,
+then $L_i\otimes L_i$ contains $L_3$, so the subcategory contains
+$\operatorname{Ver}_p^+$. If $i$ is even, then $p-i$ is odd, hence
+$L_{p-i}$ already belongs to $\operatorname{Ver}_p^+$. The product
+$L_i\otimes L_{p-i}$ contains $L_{p-1}=\varepsilon$, so the
+subcategory is all of $\operatorname{Ver}_p$. More generally,
+adjoining $\varepsilon$ to $\operatorname{Ver}_p^+$ gives all the
+even-indexed simples by $\varepsilon\otimes L_j=L_{p-j}$ for odd $j$.
+If there are no such
+intermediate simples, the only possibilities are $\Vect_k$ and the
+subcategory generated by $\varepsilon$. This proves the list.
+
+The multiplication functor in the displayed equivalence sends
+$\1\boxtimes L_j$ to $L_j$ and
+$\varepsilon\boxtimes L_j$ to $L_{p-j}$ for odd $j$. These are all
+the simple objects of $\operatorname{Ver}_p$, each appearing once.
+It identifies the corresponding morphism spaces, and is therefore
+an equivalence of semisimple categories. The symmetry allows the
+middle two factors of a tensor product to be interchanged, supplying
+its symmetric monoidal structure.
+\end{proof}
+
+This decomposition and the list of subcategories are also proved in
+\cite[Proposition 3.3]{OstrikVerlinde}. The product construction and its
+universal property will be made explicit in the next lecture.

@@ -1,0 +1,115 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=.7cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}\setlist{itemsep=0.5em} 
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{mathabx}
+
+
+
+
+%% header, footer definitions
+\pagestyle{fancy}
+\fancyhead[L]{Math 441}
+\fancyhead[C]{Homework 5} 
+\fancyhead[R]{Due on July 31} 
+
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+% custom solution environment
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+
+
+% operators
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\sgn}{sgn}
+
+
+
+\begin{document}
+
+%\noindent Your name! \hfill  The date 
+
+%\vskip10pt
+
+\begin{problem}
+\begin{enumerate}
+	\item Let $X$ be a set endowed with the cofinite topology. Prove that a sequence $(x_n)$ converges to a point $x\in X$ if and only if for every $y\ne x$, the set $\{n\in\N \mid x_n= y\}$ is finite.
+	\item Consider $\R$ with the cofinite topology. Towards what points does the sequence $x_n=\frac{1}{n}$ converge?
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+Assume that $X$ is a topological spaces with subbasis $\mathcal S$, and let $x\in X$. Prove that a sequence  $(x_n)$ converges to $x$ if and only if for every $S\in \mathcal S$ containing $x$, there exists some  $N\in \N$ such that $x_n\in S$ for every $n\geq N$.
+\end{problem}
+
+\begin{problem}
+Let $\{X_i \mid i \in \Lambda\}$ be a collection of topological spaces, and let $(x_n)$ be a sequence of elements in the Cartesian product $\prod_{i\in \Lambda } X_i$. For each $j\in \Lambda$, let $p_j\colon \prod_{i\in \Lambda } X_i\to X_j$ denote the projection to the $j$-th coordinate.
+\begin{enumerate}
+	\item Endow $\prod_{i\in \Lambda } X_i$ with the product topology.  Prove that $(x_n)$ converges to a point $x\in \prod_{i\in \Lambda } X_i$  if and only if for each $j\in \Lambda$, the sequence of $j$-th coordinates $p_j(x_n)$ in converges to $p_j(x)$ in $X_j$. 
+	\item Is the statement in Part 2 true if we consider the box topology on $\prod_{i\in \Lambda } X_i$?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+In this exercise we endow $\R$ and $\R^2$ with the standard topologies, and quotients with the quotient topology. For the following quotient spaces, describe a
+homeomorphism to a simpler, known space.
+\begin{enumerate}
+	\item $\R/\sim$ where $x\sim y$ if and only if $\sgn(x)=\sgn(y)$.\footnote{The sign function $\sgn \colon \R \to \R$ is defined by $\sgn(0)=0$ and $\sgn(x)=\frac{x}{\abs{x}}$ for $x\ne 0$.}
+	\item $\R^2/\sim$ where $(x,y)\sim (x',y')$ if and only if $x=x'$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $S^n = \{x \in \R^{n+1}\mid ||x|| = 1\}$ be the unit sphere with the induced topology, where $||x||=\sqrt{x_1^2 + \dots+ x_{n+1}^2}$. Consider the quotient space $\R P^n = S^n/ \sim$ where 
+where $x \sim y$ if and only if  $y= x$ or $y=-x$. This space is called real projective space.
+\begin{enumerate}
+	\item Find a continuous bijection $\R P^1\to S^1$.
+	\item Consider the disk $D^2=\{x \in \R^2\mid ||x||\leq 1 \}$ with the induced topology from $\R^2$ (note that $D^2$ contains $S^1$ as the \emph{boundary} points). Consider on $D^2$ the equivalence relation $\sim'$ such that $x\sim' -x$ for every $x\in S^1\subseteq D^2$ (i.e. opposite boundary points of $D^2$ are identified).
+	
+	Find a continuous bijection $\R P^2\to D^2/\sim'$.
+\end{enumerate}
+\end{problem}
+
+
+
+\end{document}
+
+
+
+
+

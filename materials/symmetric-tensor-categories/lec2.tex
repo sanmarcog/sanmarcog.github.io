@@ -1,0 +1,99 @@
+\section{Lecture 2 (January 13, 2025): Affine groups and Hopf algebras}\label{lec2}
+\noindent\textit{Scribe: Justin Bloom}
+\subsection*{More on affine group schemes}
+\textbf{Last time:} We defined affine schemes over $k$ as \textit{representable} functors \[X : k{\text{-}\sf Alg} \to {\sf Set},\] represented by a coordinate algebra denoted $k[X]$ (or $\mathcal{O}(X)$). The Yoneda lemma establishes a contravariant equivalence (or antiequivalence) of categories
+\[\begin{tikzcd}
+	{{\sf AffSch}_k} && {k\text{-}{\sf Alg}}
+	\arrow["{k[\phantom{X}]}", from=1-1, to=1-3]
+	\arrow["{\mathrm{Spec}}", shift left=3, bend left = 8, from=1-3, to=1-1]
+\end{tikzcd},\]
+where the functor $\mathrm{Spec}$ is defined by $\Spec A : B \mapsto \mathrm{Hom}_{k\text{-}{\sf Alg}}(A, B).$
+
+\textbf{Today:} We will define the category of \textit{affine group schemes} over $k$, denoted ${\sf AffGrp}_k$, as well as the category of \textit{Hopf algebras} over $k$, denoted ${\sf Hopf}_k$. We will see that the antiequivalence above descends to a contravariant equivalence
+\[\begin{tikzcd}
+	{{\sf AffGrp}_k} && {{\sf CommHopf}_k}
+	\arrow["{k[\phantom{X}]}", from=1-1, to=1-3]
+	\arrow["{\mathrm{Spec}}", shift left=3, bend left = 8, from=1-3, to=1-1]
+\end{tikzcd},\]
+where ${\sf CommHopf}_k$ is the category of commutative Hopf algebras and Hopf-algebra homomorphisms. Its morphisms preserve multiplication, unit, comultiplication, counit and antipode.
+
+\begin{definition}
+    An \textit{affine group scheme} is an affine scheme $G$ which factors through the category of groups, i.e. such that there exists a functor $G'$ making the diagram commute
+    \[\begin{tikzcd}
+	{k\text{-}{\sf Alg}} && {{\sf Set}} \\
+	& {{\sf Grp}}
+	\arrow["G", from=1-1, to=1-3]
+	\arrow["{G'}"', dashed, from=1-1, to=2-2]
+	\arrow["{{\sf For}}"', from=2-2, to=1-3]
+\end{tikzcd},\]
+where ${\sf For}$ is the forgetful functor taking any group to its underlying set. 
+A \textit{homomorphism} of affine group schemes $G_1 \to G_2$ is a natural map of diagrams, i.e. a natural map such that each $G_1'(R) \to G_2'(R)$ is a group homomorphism for any algebra $R$. 
+
+We will adopt the convention that the forgetful functor is ignored, and an affine group scheme $G$ has target category ${\sf Grp}$ for simplicity.
+\end{definition}
+\begin{example}
+    Consider ${\bf pt} \in {\sf AffSch}_k,$ represented by $k$ as an algebra over itself. We have ${\bf pt}(R) = \mathrm{Hom}(k, R)$ consists of a single point $\{ \ast \}$, the structure map $k \to R$ included in defining $R$ as an algebra over $k$, for any $R$. Since $\{ \ast \}$ can always be given the structure of the trivial group, making any map ${\bf pt}(R) \to {\bf pt}(R')$ a group homomorphism, we have ${\bf pt}$ is an affine group scheme we may call ${\bf 1}$.
+\end{example}
+
+\begin{definition}
+    Given $X, Y \in {\sf AffSch}_k$, we define 
+    \begin{flalign*}
+       X \times Y : k\text{-}{\sf Alg} &\to {\sf Set}\\ 
+       R &\mapsto X(R) \times Y(R),
+    \end{flalign*}
+    called the \textit{fiber product} of $X$ and $Y$ over $k$. 
+\end{definition}
+\textbf{Notes:}
+\begin{enumerate}[1)]
+    \item We have $X \times Y \in {\sf AffSch}_k$, with representing algebra $k[X] \otimes k[Y],$ because it is a fact that $\otimes$ is the coproduct for commutative algebras over $k.$
+    \item The product $ \times $ is the direct product in ${\sf AffSch}_k,$ as can be seen by the antiequivalence. In fact, it agrees with the direct product in the big category of ${\sf Set}$-valued functors, as can be checked fiberwise. 
+\end{enumerate}
+
+\begin{lemma}\label{HopfCoordAlg}
+    If $G \in {\sf AffGrp}_k,$ then $k[G] \in {\sf Hopf}_k$ (the coordinate algebra is a Hopf algebra).  
+\end{lemma}
+\begin{proof}
+    Since we have a functor
+    \[G : k\text{-}{\sf Alg} \to {\sf Grp},\] we get maps in ${\sf AffSch}_k$
+    \[G \times G \xrightarrow{\mathrm{mult}} G, \qquad {\bf pt} \xrightarrow{\mathrm{unit}} G,\]
+    \[G \xrightarrow{\mathrm{inverse}} G.\]
+    The antiequivalence now gives us homomorphisms of algebras
+    \[k[G] \otimes k[G] \xleftarrow{\Delta} k [G],\qquad k \xleftarrow{\varepsilon} k[G],\]
+    \[k[G] \xleftarrow{S}k[G].\]
+    The associative, unit, and inverse axioms all have diagrams, which upon reversing arrows, give the axioms for coassociative, counit, and antipodes, which define a Hopf algebra. 
+\end{proof}
+\begin{theorem}
+    The Yoneda lemma establishes an antiequivalence 
+    \[\begin{tikzcd}
+	{{\sf AffGrp}_k} && {{\sf CommHopf}_k}
+	\arrow["{k[\phantom{X}]}", from=1-1, to=1-3]
+	\arrow["{\mathrm{Spec}}", shift left=3, bend left = 8, from=1-3, to=1-1]
+\end{tikzcd}.\]
+\end{theorem}
+\begin{proof}
+    An immediate corollary of Lemma \ref{HopfCoordAlg} is that the functor $k[\phantom{X}]$ takes any group scheme to a commutative Hopf algebra. We must argue for any $A \in {\sf CommHopf}_k$, that $\Spec A$ is an affine group scheme and that the relevant compositions are naturally isomorphic to the identity functors. 
+
+    Let $G = \Spec A$ for a Hopf algebra $A$, and let $R \in k\text{-}{\sf Alg}$.
+    \begin{enumerate}[1)]
+    \item Let $f, g \in G(R).$ We'll define the group product $fg$ as the composition
+    \[fg : A \xrightarrow{\Delta} A \otimes A \xrightarrow{f \otimes g} R \otimes R  \to R,\]
+    with the rightmost map being multiplication for $R$, which for commutative $R$ is indeed a homomorphism of algebras. Hence $fg \in G(R)$.  
+    \item The unit in $G(R)$ is $A \xrightarrow{ \varepsilon} k \to R.$
+    \item The inverse of $f \in G(R)$ is defined by
+    \[f^{-1} : A \xrightarrow{S}A \xrightarrow{f} R.\]
+    \end{enumerate}
+    Since $A$ is commutative, $S$ and hence $f\circ S$ are algebra maps.
+    Coassociativity gives associativity of this product, and the counit
+    identities give the unit. In Sweedler notation,
+    \begin{align*}
+    (ff^{-1})(a)
+      &=\sum f(a_1)f(S(a_2))\\
+      &=f\!\left(\sum a_1S(a_2)\right)
+       =\epsilon(a)1_R.
+    \end{align*}
+    The other antipode identity similarly gives $f^{-1}f=\epsilon(-)1_R$.
+    For an algebra map $h:R\to R'$, composition $f\mapsto h\circ f$
+    preserves this product and the identity. Thus $G$ is a group-valued functor.
+
+    What's left to check is that the group structures and Hopf algebra structures are recovered from the constructions we've defined. In other words, given $G$, we have $A = k[G]$ is a Hopf algebra as constructed in Lemma \ref{HopfCoordAlg}, and must verify that our construction for a group scheme $\Spec A$ recovers $G$. Similarly, starting with $A$ a commutative Hopf algebra, we have now that $G = \Spec A$ is a group scheme, so we must verify that the Hopf algebra construction of $\ref{HopfCoordAlg}$ recovers the given structure on $A$. We complete this verification in Lecture~\ref{lec3}.  
+\end{proof}

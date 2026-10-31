@@ -1,0 +1,133 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=.7cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}\setlist{itemsep=0.5em} 
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{mathabx}
+
+
+
+
+%% header, footer definitions
+\pagestyle{fancy}
+\fancyhead[L]{Math 441}
+\fancyhead[C]{Homework 1} 
+\fancyhead[R]{Due on June 26} 
+
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+% custom solution environment
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+
+
+% operators
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+
+
+
+\begin{document}
+
+%\noindent Your name! \hfill  The date 
+
+%\vskip10pt
+
+
+\begin{problem}
+Let $X$ be a topological space and $A$ a subset of $X$. Define the \emph{interior} of $A$ (denoted $A^{\circ}$) and the \emph{closure} of $A$ (denoted $\overline A$) by 
+\begin{align*}
+\mathring A&=\{x \in X \mid \text{$A$ is a neighborhood of $x$} \} \\
+	\overline A&=\{x \in X \mid \text{$X\setminus A$ is not a neighborhood of $x$} \} 
+\end{align*}
+Prove that $\mathring A \subseteq A \subseteq \overline A$. 
+\end{problem}
+
+%\begin{solution}
+
+%\end{solution}
+\begin{problem}
+Let $X$ be a topological space and $A$ a subset of $X$. Prove that 
+\begin{align*}
+	\mathring A&=\bigcup_{U \text{ open, }  U \subseteq A} U, & \overline A&=\bigcap_{C \text{ closed, }  C \supseteq A} C.
+\end{align*}
+\end{problem}
+
+\begin{problem}[10 points]
+Let $X$ be a topological space and $A$ a subset of $X$. 
+\begin{enumerate}
+\item Prove that $\mathring A$ is the largest open set contained in $A$ and that $\overline A$ is the smallest closed set containing $A$. 
+\item\label{prob2part2} Prove that $A$ is open if and only if $A=\mathring A$ if and only if $A$ is a neighborhood of each of its points. 
+\item State and prove the closed version of the first biconditional (if and only if) of Part \ref{prob2part2}.
+\item For the standard topology on $\R$, compute the interior and the closure of the interval $[0,2)$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+Let $X$ be any set. Prove that the family of subsets 
+\[\mathcal T_{\text {cf}}=\{ U \subseteq X \mid X\setminus U \text { is finite } \} \cup \{ \emptyset\}\]
+defines a topology on $X$. This is called the \emph{cofinite} topology.
+\end{problem}
+
+\begin{problem}
+Let $X$ be a topological space and let $A$ be a subset of $X$. Prove that the family of subsets 
+\[\mathcal T_{A}=\{ V \subseteq A \mid \text {there exists an open set } U \subseteq X \text { such that } V=U\cap A\} \]
+defines a topology on $A$. This is called the \emph{induced} topology.
+\end{problem}
+
+\begin{problem}
+Munkres 13.3
+\end{problem}
+
+
+\begin{problem}
+	Munkres 13.4
+\end{problem}
+
+\begin{problem}
+	Munkres 13.6
+\end{problem}
+
+
+\begin{problem}
+	Munkres 13.8 
+\end{problem}
+
+\end{document}
+
+
+
+
+

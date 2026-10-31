@@ -1,0 +1,112 @@
+\section{Lecture 6 (January 24, 2025): Symmetric Braidings and Rigidity}\label{lec6}
+\noindent\textit{Scribe: Jaedon Rich}
+ 
+
+\begin{definition}
+A braiding $c_{X,Y}: X \otimes Y \to Y \otimes X$ is \textit{symmetric} if $$c_{Y,X} c_{X,Y} = \Id_{X \otimes Y}.$$
+\end{definition}
+
+\begin{remark}
+\hfill
+    \begin{itemize}
+        \item Let $\cC$ be braided and take $X \in \cC$. Then we get an action of the braid group 
+        \[
+        B_n=\langle b_1,\ldots,b_{n-1}\mid
+        \begin{array}{ll}
+        b_ib_j=b_jb_i&(|i-j|>1),\\
+        b_ib_{i+1}b_i=b_{i+1}b_ib_{i+1}&(1\leq i\leq n-2)
+        \end{array}\rangle
+        \]
+        on $X^{\otimes n}$, with $b_i$ acting by $c_{X,X}$ in positions $i,i+1$ and identities elsewhere. Coherence supplies the required associators.
+        \item If the braiding is symmetric, this action factors through $S_n = B_n/\langle b_i^2 \rangle$
+    \end{itemize}
+\end{remark}
+\begin{example}
+The ``swap'' braiding in $\bVec_k$
+\[x \otimes y \mapsto y \otimes x\]
+is symmetric.
+\end{example}
+\begin{example}
+For every affine group scheme $G$, the ordinary flip is $G$-equivariant for the diagonal action, so its representation category is symmetric as well.
+\end{example}
+
+\begin{example}
+    Take an abstract group $G$. Define the category $\bVec_k G$ of $G$-graded $k$-vector spaces whose objects are vector spaces of the form $$V = \bigoplus_{g \in G} V_g$$ and whose morphisms are degree-preserving linear maps.\\
+    For any $G$, this has a monoidal structure given by
+    \[(V \otimes W)_g = \bigoplus_{xy = g} (V_x \otimes W_y).\]
+    In this case, a braided structure exists if and only if $G$ is abelian. To see the only if direction, notice that for any $g \in G$ we have an object $\delta_g$ which is $k$ in degree $g$ and $0$ in all other degrees. If $G$ has a braiding, then we get
+    \[\delta_{gh} = \delta_g \otimes \delta_h \simeq \delta_h \otimes \delta_g = \delta_{hg},\]
+    and so $gh = hg$. Conversely, for abelian $G$, the ordinary flip preserves the grading and satisfies the hexagon identities for the usual associator.
+\end{example}
+\begin{example}
+    Consider $\SVec_k = \bVec_k(\Z/2\Z)$, vector spaces graded by $\Z/2\Z$. In particular, every object is of the form $V = V_0 \oplus V_1$, where we call $V_0$ and $V_1$ the even and odd homogeneous components, respectively. \\
+    For $v \in V_i$, we define $|v| = \deg v = i$. Then the braiding $V \otimes W \to W \otimes V$ is given on homogeneous elements by
+    \[v \otimes w \mapsto (-1)^{|v||w|} w \otimes v.\]
+    The sign is multiplicative in each degree, so the hexagon identities hold; applying the flip twice gives sign $(-1)^{2|v||w|}=1$, hence symmetry. When $\operatorname{char}k=2$, the sign equals $1$ and this braiding is the ordinary flip on graded spaces. The distinction considered below requires characteristic different from $2$.
+\end{example}
+\begin{definition}
+    Fix a symmetric monoidal category $\cC$ and $X \in \cC$. A \textit{dual object} of $X$ is an object $X^*$ with maps $\ev_X: X^* \otimes X \to \mathbb{1}$ and $\coev_X: \mathbb{1} \to X \otimes X^*$ such that
+    \[
+    (\mathrm{id}_X\otimes\ev_X)a_{X,X^*,X}
+    (\coev_X\otimes\mathrm{id}_X)=\mathrm{id}_X,
+    \]
+    \[
+    (\ev_X\otimes\mathrm{id}_{X^*})a^{-1}_{X^*,X,X^*}
+    (\mathrm{id}_{X^*}\otimes\coev_X)=\mathrm{id}_{X^*},
+    \]
+    where the canonical unit constraints identify the sources and targets with $X$ and $X^*$.
+\end{definition}
+\begin{definition}
+    $\cC$ is \textit{rigid} if all objects admit a dual.
+\end{definition}
+\begin{remark}
+\hfill
+\begin{itemize}
+    \item If $X^*$ exists, it is unique up to a unique isomorphism compatible with evaluation and coevaluation. 
+    \item Rigidity is a property, not a structure.
+    \item If $\cC$ is rigid, we get a contravariant functor $X \mapsto X^*$.
+    \item In a symmetric category, we get a natural isomorphism $X \cong (X^*)^*$.
+    \item Rigidity can be defined for any monoidal category. Without the symmetric braiding, we get ``left'' and ``right'' duals $X^*$ and ${^*X}$, respectively, such that $X \cong {^*(X^*)}$.
+\end{itemize}
+\end{remark}
+\begin{example}
+    In $\bVec_k$, we can let $V^* \coloneqq \Hom_k(V, k)$ with
+    \begin{align*}
+        \ev_V: \hspace{1mm} &V^* \otimes V \to k \\
+        &f \otimes v \mapsto f(v)
+    \end{align*}
+    and
+    \begin{align*}
+        \coev_V: k & \to V \otimes V^* \\
+        1&\mapsto\sum_i v_i\otimes f_i,
+    \end{align*}
+    where $\{v_i\}$ is a finite basis and $\{f_i\}$ its dual basis. A coevaluation satisfying the triangle identities exists precisely when $V$ is finite dimensional.
+    The tensor $\sum_i v_i\otimes f_i$ corresponds to $\mathrm{id}_V$ under $V\otimes V^*\simeq\operatorname{End}_k(V)$, so it is independent of the basis. Conversely, if a coevaluation satisfying the triangle identities has $\coev(1)=\sum_{i=1}^m v_i\otimes f_i$, the first identity gives $v=\sum_i f_i(v)v_i$ for every $v\in V$. Thus the $v_i$ span and $V$ is finite dimensional.
+\end{example}
+\begin{definition}
+    An abelian $k$-linear category $\cC$ is \textit{Artinian} if
+    \begin{itemize}
+        \item[1)] Hom sets are finite dimensional $k$-vector spaces
+        \item[2)] All objects have finite length. That is, for any $X \in \cC$ there is a family of strict inclusions
+        \[0=X_0 \subset X_1 \subset \dots \subset X_n = X\]
+        such that each $X_i/X_{i-1}$ is simple.
+    \end{itemize}
+\end{definition}
+\begin{definition}
+    A \textit{symmetric tensor category} is a category $\cC$ which has
+    \begin{itemize}
+        \item[1)] A rigid symmetric monoidal structure. 
+        \item[2)] An Artinian abelian $k$-linear structure.
+    \end{itemize}
+    such that
+    \begin{itemize}
+        \item[1)] $\otimes$ is $k$-linear on Homs (that is, bilinear).
+        \item[2)] $\End_{\cC}(\mathbb{1}) \cong k$. Under these hypotheses the unit is simple; see \cite[Section 4.3]{EGNO}.
+    \end{itemize}
+\end{definition}
+\begin{remark}
+    Rigidity implies that tensoring with an object has both a left and a right adjoint, given by tensoring with suitable duals. A functor between abelian categories with both adjoints is exact. Hence $\otimes$ is exact in each variable; bilinearity alone would not imply this. See \cite[Proposition 4.2.1]{EGNO}.
+\end{remark}
+\begin{exercise}
+Show that $G$-graded vector spaces are equivalent to right comodules over the group algebra $kG$, by sending $v\in V_g$ to $v\otimes g$.
+\end{exercise}

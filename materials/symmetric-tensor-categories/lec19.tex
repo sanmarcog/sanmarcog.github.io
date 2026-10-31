@@ -1,0 +1,157 @@
+\section{Lecture 19 (February 28, 2025, est.): The Frobenius functor}
+\label{lec19}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+Throughout this lecture, $k$ is algebraically closed of characteristic $p>0$,
+and $\mathcal C$ is a semisimple symmetric tensor category. We write
+$\overline{\mathcal A}$ for the semisimplification of a symmetric category
+$\mathcal A$ by negligible morphisms. For the cyclic group $C_p$, let $J_r$
+be the indecomposable representation of dimension $r$, and let $L_r$ be its
+image in $\mathsf{Ver}_p$. Thus $L_p=0$ and $L_1=\mathbf1$.
+
+\subsection{Equivariant objects and semisimplification}
+If a finite group $G$ acts trivially on $\mathcal C$, an object of
+$\mathcal C^G$ is a pair $(X,\rho)$ with $\rho:G\to\Aut_{\mathcal C}(X)$.
+The morphisms commute with the specified actions. There is a symmetric
+equivalence
+\[
+ \mathcal C^G\simeq\mathcal C\boxtimes\Rep_k(G).
+\]
+Indeed, write $X=\bigoplus_S S\otimes_k M_S$, where $S$ runs through the
+simple objects of $\mathcal C$ and $M_S=\Hom(S,X)$. Since
+$\End(S)=k$ and there are no morphisms between distinct simples, the
+$G$-action is precisely a representation on each multiplicity space $M_S$.
+
+\begin{proposition}\label{lec19-equivariant-semisimplification}
+There is a symmetric equivalence
+\[
+ \overline{\mathcal C^G}
+ \simeq\mathcal C\boxtimes\overline{\Rep_k(G)}.
+\]
+\end{proposition}
+\begin{proof}
+The indecomposables of $\mathcal C^G$ are $S\boxtimes M$, with $S$ simple
+and $M$ an \emph{indecomposable} $G$-module. Their categorical dimensions are
+$\dim(S)\dim_k(M)$. A simple object in a semisimple rigid category has
+nonzero categorical dimension: the two one-dimensional spaces
+$\Hom(\mathbf1,S\otimes S^*)$ and $\Hom(S\otimes S^*,\mathbf1)$ pair
+nondegenerately, because the unit occurs with multiplicity one.
+Consequently $S\boxtimes M$ has dimension zero exactly when $M$ does.
+The trace pairing on the $S$-isotypic block is the ordinary trace pairing
+on the multiplicity spaces multiplied by the nonzero scalar $\dim(S)$.
+Thus taking its radical, and then the quotient, acts separately on each
+$G$-module block. This gives the claimed equivalence, compatibly with tensor
+products and symmetry.
+\end{proof}
+
+\begin{remark}
+It is simple objects, rather than all nonzero objects, that have nonzero
+dimension here. For example, $\mathbf1^{\oplus p}$ is nonzero but has
+dimension zero in characteristic $p$.
+\end{remark}
+
+\subsection{Tensor powers and additivity}
+The symmetry defines an action of $S_p$ on $X^{\otimes p}$. Restrict it to
+$C_p=\langle\sigma\rangle$, where $\sigma=(1\,2\,\cdots\,p)$. This gives a
+functor
+\[
+ P:\mathcal C\longrightarrow\mathcal C^{C_p},\qquad
+ X\longmapsto(X^{\otimes p},\sigma),\quad f\longmapsto f^{\otimes p}.
+\]
+The canonical regrouping of tensor factors makes $P$ symmetric monoidal,
+but $P$ is not additive. Compose it with semisimplification to obtain
+\[
+ \mathrm{Fr}_0:\mathcal C\longrightarrow
+ \overline{\mathcal C^{C_p}}\simeq
+ \mathcal C\boxtimes\mathsf{Ver}_p.
+\]
+
+\begin{lemma}\label{lec19-additivity}
+The functor $\mathrm{Fr}_0$ is additive.
+\end{lemma}
+\begin{proof}
+For $f,g:X\to Y$, expand $(f+g)^{\otimes p}$. Besides $f^{\otimes p}$ and
+$g^{\otimes p}$, every term is a word in $f$ and $g$ containing both letters.
+The cyclic group acts freely on these words, since $p$ is prime. The sum
+over one orbit has the form
+\[
+ T=\sum_{i=0}^{p-1}\sigma_Y^i h\sigma_X^{-i},
+ \qquad h=h_1\otimes\cdots\otimes h_p.
+\]
+It is $C_p$-equivariant. For an equivariant map
+$u:Y^{\otimes p}\to X^{\otimes p}$, naturality and cyclicity of the trace give
+\[
+ \Tr(\sigma_Y^i h\sigma_X^{-i}u)
+ =\Tr(h\sigma_X^{-i}u\sigma_Y^i)=\Tr(hu).
+\]
+Hence $\Tr(Tu)=p\Tr(hu)=0$. Each orbit sum is negligible, so the mixed terms
+vanish after semisimplification. This proves additivity on morphisms.
+Since $P(0)=0$, preservation of biproducts follows as well.
+\end{proof}
+
+\subsection{The scalar twist}
+Although additive, $\mathrm{Fr}_0$ satisfies
+$\mathrm{Fr}_0(\lambda f)=\lambda^p\mathrm{Fr}_0(f)$. Define
+$\mathcal C^{(1)}$ to have the same underlying additive symmetric monoidal
+category as $\mathcal C$, with scalar multiplication
+\[
+ \lambda\mathbin{\cdot_{(1)}} f=\lambda^p f.
+\]
+Because $k$ is perfect, this is again a tensor category over $k$.
+The category $\mathsf{Ver}_p$ is defined over $\mathbb F_p$, and therefore
+$\mathsf{Ver}_p^{(1)}\simeq\mathsf{Ver}_p$.
+
+\begin{definition}
+The \emph{Frobenius functor} is the resulting $k$-linear symmetric monoidal
+functor
+\[
+ \mathrm{Fr}:\mathcal C\longrightarrow
+ \mathcal C^{(1)}\boxtimes\mathsf{Ver}_p.
+\]
+\end{definition}
+It is exact because every exact sequence in $\mathcal C$ splits. This
+argument uses semisimplicity; exactness will be a genuine condition in the
+last lecture. The construction and additivity argument are due to Ostrik
+\cite[Section 3.3]{OstrikVerlinde}.
+
+\subsection{The example $\mathsf{Ver}_5^+$}
+Let $X=L_3$ in $\mathsf{Ver}_5^+$. Its fusion rule is
+$X^{\otimes2}=\mathbf1\oplus X$, so
+\[
+ X^{\otimes5}=\mathbf1^{\oplus3}\oplus X^{\oplus5}.
+\]
+As an equivariant object this has the form
+$\mathbf1\boxtimes M_1\oplus X\boxtimes M_X$, with
+$\dim_k M_1=3$ and $\dim_k M_X=5$. Put
+$\varphi=(1+\sqrt5)/2=\operatorname{FPdim}(X)$. Tensor functors between
+fusion categories preserve Frobenius--Perron dimensions, hence
+\[
+ \varphi=\operatorname{FPdim}(\overline{M_1})
+       +\varphi\operatorname{FPdim}(\overline{M_X}).
+\]
+The possible decompositions of a three-dimensional $C_5$-module are
+$J_3$, $J_2\oplus J_1$, and $J_1^{\oplus3}$. Their semisimplifications have
+Frobenius--Perron dimensions $\varphi$, $\varphi+1$, and $3$, respectively.
+Thus equality forces $M_1=J_3$ and $\overline{M_X}=0$. Since $M_X$ has
+dimension five, it must be $J_5$. Therefore
+\[
+ \mathrm{Fr}(X)=\mathbf1\boxtimes L_3.
+\]
+
+\subsection{The induced operation on the Grothendieck ring}
+Write $K_0(\mathcal C)$ for the Grothendieck ring; a Frobenius twist does
+not change this ring. Categorical dimension defines a ring map
+\[
+ \phi:K_0(\mathcal C)\otimes_{\mathbb Z}K_0(\mathsf{Ver}_p)
+ \longrightarrow K_0(\mathcal C)\otimes_{\mathbb Z}k,
+ \qquad [Y]\otimes[L_r]\longmapsto[Y]\otimes r.
+\]
+\begin{lemma}\label{lec19-grothendieck-frobenius}
+For every $X\in\mathcal C$, one has $\phi([\mathrm{Fr}(X)])=[X]^p$.
+\end{lemma}
+\begin{proof}
+Decompose $P(X)$ as $\bigoplus_S S\boxtimes M_S$. Forgetting the cyclic
+action gives $[X]^p=\sum_S\dim_k(M_S)[S]$. On semisimplifying, each
+$J_r$ with $r<p$ contributes categorical dimension $r$, while $J_p$ is
+killed and its dimension is already zero in $k$. The two expressions agree.
+\end{proof}

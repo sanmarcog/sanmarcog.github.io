@@ -1,0 +1,115 @@
+\section{Lecture 3 (January 15, 2025): Affine groups and representations}\label{lec3}
+\noindent\textit{Scribe: Andrew Aguilar}
+
+\subsection{Recovering the Hopf structure}
+We finish the antiequivalence between affine group schemes and commutative
+Hopf algebras begun in Lecture~\ref{lec2}.
+
+\begin{theorem}
+The coordinate-algebra construction gives an antiequivalence between
+$\mathsf{AffGrp}_k$ and $\mathsf{CommHopf}_k$.
+\end{theorem}
+\begin{proof}
+The two constructions of the previous lecture agree with the underlying
+Yoneda antiequivalence. It remains to check the additional structures.
+Let $A$ be a commutative Hopf algebra and let
+$G(R)=\Hom_{k\text{-}\mathsf{Alg}}(A,R)$ with its convolution product.
+The two algebra maps
+\[
+ \iota_l(a)=a\otimes1,\qquad \iota_r(a)=1\otimes a
+\]
+are points of $G(A\otimes A)$. Their product is
+\[
+ (\iota_l\iota_r)(a)
+   =\sum(a_1\otimes1)(1\otimes a_2)
+   =\sum a_1\otimes a_2=\Delta(a).
+\]
+Thus the group law recovers the original comultiplication. The identity
+of $G(k)$ is $\epsilon:A\to k$, and the inverse of the universal point
+$\id_A\in G(A)$ is $S:A\to A$. This recovers the counit and antipode.
+Conversely, Yoneda identifies the natural group operations on any affine
+$G$ with precisely these three algebra maps, so they are recovered as well.
+Finally, a natural map of affine schemes is a group homomorphism exactly
+when its coordinate-algebra map commutes with these operations. Hence the
+constructions are inverse on objects and morphisms, up to their natural
+Yoneda identifications.
+\end{proof}
+
+For clarity, the multiplication on $A\otimes B$ used above is
+\[
+ (a\otimes b)(a'\otimes b')=aa'\otimes bb'.
+\]
+It is the composite of $\id_A\otimes\tau_{B,A}\otimes\id_B$ with
+$m_A\otimes m_B$, where $\tau_{B,A}(b\otimes a')=a'\otimes b$.
+
+\begin{example}
+The additive group $\mathbb G_a$ has coordinate algebra $k[x]$, with
+\[
+ \Delta(x)=x\otimes1+1\otimes x,\qquad
+ \epsilon(x)=0,\qquad S(x)=-x.
+\]
+These formulas express addition, zero and negation.
+\end{example}
+
+\begin{example}
+For $\GL_n$, put $X=(x_{ij})$ and $d=\det X$. Its coordinate algebra is
+$A=k[x_{ij},d^{-1}]$. Matrix multiplication gives
+\[
+ \Delta(x_{ij})=\sum_{l=1}^n x_{il}\otimes x_{lj},\qquad
+ \Delta(d^{-1})=d^{-1}\otimes d^{-1}.
+\]
+The identity matrix and inverse matrix give
+\[
+ \epsilon(x_{ij})=\delta_{ij},\qquad S(x_{ij})=(X^{-1})_{ij},
+ \qquad \epsilon(d^{-1})=1,\quad S(d^{-1})=d.
+\]
+\end{example}
+\begin{exercise}
+Check directly that these formulas respect $dd^{-1}=1$ and satisfy the
+counit and antipode identities.
+\end{exercise}
+
+\begin{example}
+For $\mathbb G_m=\GL_1$ the algebra is $k[x,x^{-1}]$, and
+\[
+ \Delta(x)=x\otimes x,\qquad\epsilon(x)=1,\qquad S(x)=x^{-1}.
+\]
+\end{example}
+
+\subsection{Rational representations and comodules}
+Fix a field $k$, an affine group scheme $G$ and a $k$-vector space $V$.
+Write $V_R=V\otimes_kR$ and
+$\GL(V)(R)=\Aut_R(V_R)$. When $V$ is finite-dimensional, the functor
+$R\mapsto V_R$ is an affine scheme represented by $\Sym(V^*)$, and
+$\GL(V)$ is an affine group scheme isomorphic to $\GL_{\dim V}$ after
+choosing a basis. For arbitrary $V$, we use these functors without asserting
+that they are affine schemes.
+
+\begin{definition}\label{RatRepDef}
+A \emph{rational $G$-module} is a vector space $V$ with an action
+$G(R)\curvearrowright V_R$ by $R$-linear automorphisms, natural in every
+commutative $k$-algebra $R$. Equivalently, it is a morphism of group-valued
+functors $G\to\GL(V)$.
+\end{definition}
+
+\begin{definition}\label{ComodDef}
+Let $(A,\Delta,\epsilon)$ be a coalgebra over $k$. A \emph{right
+$A$-comodule} is a vector space $M$ with a linear map
+$\rho:M\to M\otimes A$ such that
+\[
+ (\rho\otimes\id_A)\rho=(\id_M\otimes\Delta)\rho,
+ \qquad(\id_M\otimes\epsilon)\rho=\id_M.
+\]
+These are coassociativity and counitality. In Sweedler notation we write
+$\rho(m)=\sum m_0\otimes m_1$, with the summation understood to be finite
+for each $m$.
+\end{definition}
+
+\begin{theorem}\label{rep-comodule-dictionary}
+Let $A=k[G]$. Giving a rational $G$-module structure on $V$ is equivalent
+to giving a right $A$-comodule structure on $V$. If $V$ is finite-dimensional,
+these are also equivalent to a morphism of affine group schemes
+$G\to\GL(V)$.
+\end{theorem}
+We prove this statement and its compatibility with morphisms in the next
+lecture.

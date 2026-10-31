@@ -1,0 +1,138 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=1cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=0.5em}
+\usepackage{xcolor}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usepackage[colorlinks = true,
+linkcolor = forestgreen,
+urlcolor  = forestgreen,
+citecolor = forestgreen,
+anchorcolor = forestgreen]{hyperref}
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{tikz}
+\usepackage{mathabx}
+\usepackage{lastpage}
+
+
+
+
+
+
+%% header, footer definitions
+\def\course{MATH 314}
+\def\courselink{https://www.gsanmarco.com/graph-theory}
+\def\assignment{HW \#11}
+\def\assignlink{hw11.tex}
+\def\due{Due on April 18}
+
+
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\course}
+\fancyhead[C]{\assignment} 
+\fancyhead[R]{\due} 
+%\renewcommand{\footrulewidth}{0.4pt}
+%\fancyfoot{}
+%\fancyfoot[R]{\fontsize{8}{10} \selectfont  Page \thepage~of \pageref{LastPage}}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont  Source file available at \href{\courselink}{\textbf{\courselink}}}
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{Solution}{Solution}
+% custom
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+
+\DeclareMathOperator{\diam}{diam}
+\newcommand*{\abs}[1]{\lvert #1\rvert}
+
+
+
+\begin{document}
+\noindent  Unless explicitly requested by a problem, do not include sketches as part of your proof. You are free to use the result from any problem on this (or previous) assignment as a part of your solution to a different problem even if you have not solved the former problem.
+\vskip10pt
+
+\begin{problem}[2pts]
+	Let $G$ be any graph.
+	Prove that
+	\[
+	\abs{E(G)}\geq{\chi(G)\choose 2}.
+	\]
+\end{problem}
+
+
+
+
+\begin{problem}[1pt]
+	Let $G=(V,E)$ be any graph and consider a (not necessarily proper) edge-coloring $f\colon E\to\{\text{red},\text{blue}\}$).
+	Let $G_r$ and be the graph formed by the red edges and let $G_b$ be the graph formed by the blue edges (formally, $G_r=\bigl(V,f^{-1}(\text{red})\bigr)$ and $G_b=\bigl(V,f^{-1}(\text{blue})\bigr)$).
+	Prove that
+	\[
+	\chi(G_r)\cdot\chi(G_b)\geq\chi(G).
+	\]
+	
+	Hint: this generalizes the theorem $\chi(G) \cdot \chi (\overline G) \geq \abs{V(G)}$ from Lecture 20.
+\end{problem}
+
+
+
+\begin{problem}[1pt]
+ For every pair of positive integers $m,n$, construct a graph $G$ with the following properties:
+	\begin{itemize}
+		\item $\abs{V(G)} = m\cdot n$, and
+		\item $\chi(G)=m$, and
+		\item $\chi(\overline G)=n$.
+	\end{itemize}
+
+Note: this shows that the equality can be achieved in $\chi(G) \cdot \chi (\overline G) \geq \abs{V(G)}$.
+\end{problem}
+
+
+
+\begin{problem}[2pts]
+	Prove that $G$ is $3$-critical if and only if $G\cong C_{2n+1}$ for some positive integer $n$.
+\end{problem}
+
+
+\begin{problem}[0.5 + 1.5 pts]Recall that, for a graph $G$  with $V(G)=\{v_1, \dots, v_n\}$, the \textbf{Mycielski graph} $\mu(G)$ is obtained from $G$ by adding:
+	\begin{enumerate}[label=(\arabic*)]
+		\item \emph{shadow vertices} $\{u_1, \dots, u_n\}$ and edges $u_iv_j \in E(\mu(G))$ if $v_iv_j\in E(G)$, 
+		\item a vertex $w$ and edges $wu_i$ for all shadow vertices $u_i$. 
+	\end{enumerate}
+Show that:
+	\begin{enumerate}[label=(\alph*)]
+	\item If $G$ is triangle-free, then $\mu(G)$ is triangle free.
+	\item $\chi(\mu(G))=\chi(G)+1$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[2pts]
+Let $T$ be any tree on $t$ vertices, let $G$ be any graph on $n$ vertices and let $m$ be a positive integer. Show that if $n\geq (t-1)(m-1) + 1$, then either $G$ contains a copy of $T$ or $\overline G$ contains a copy of $K_m$ (or both).
+\end{problem}
+
+
+\end{document}
+
+
+
+

@@ -1,0 +1,111 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=.7cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}\setlist{itemsep=0.5em} 
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{mathabx}
+
+
+
+
+%% header, footer definitions
+\pagestyle{fancy}
+\fancyhead[L]{Math 441}
+\fancyhead[C]{Homework 3} 
+\fancyhead[R]{Due on July 10} 
+
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+% custom solution environment
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+
+
+% operators
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+
+
+
+\begin{document}
+
+%\noindent Your name! \hfill  The date 
+
+%\vskip10pt
+
+\begin{problem}
+Prove that composition of continuous functions is continuous. 
+\end{problem}
+
+\begin{problem}
+Let $f\colon X \to Y$ be a function between topological spaces. Prove that the following are equivalent
+\begin{enumerate}
+	\item $f$ is continuous
+	\item $f^{-1}(C)\subseteq X$ is closed for every closed set $C\subseteq Y$.
+	\item If $\mathcal S$ is a subbasis for the topology of $Y$, then $f^{-1}(S)\subseteq X$ is open for every $S \in \mathcal S$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+Let $\{(X_i, \mathcal T_i) \mid i \in \Lambda\}$ be a collection of topological spaces and let $(X,\mathcal T)$ be a topological space. Prove that a function $f\colon (X,\mathcal T) \to \left(\prod_{i \in \Lambda} X_i, \mathcal{T}_{\text{prod}}\right)$ is continuous if and only if, for all $j\in\Lambda$, the coordinate function $f_j\colon (X,\mathcal T) \to (X_j,\mathcal T_j)$ is continuous.\footnote{This means that the product topology is better than the box topology from a categorical perspective.} 
+\end{problem}
+
+\begin{problem}
+We say that a function $f\colon X \to Y$ between topological spaces is \emph{open} if $f(U)\subseteq Y$ is open for every open $U\subseteq X$. 
+\begin{enumerate}
+	\item Assume that $\mathcal B$ is a basis for the topology of $X$. Prove that $f$ is open if and only if $f(B)\subseteq Y$ is open for every $B\in\mathcal B$.
+	\item Assume that $f$ is bijective. Prove that $f$ is open if and only if $f^{-1}\colon Y \to X$ is continuous. 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $f\colon X \to Y$ be a continuous function between topological spaces. Let $A\subseteq X$ and $B\subseteq Y$ be subspaces. Prove \textbf{two} of the following. 
+\begin{enumerate}
+	\item The induced topology on $A$ is the coarsest topology on $A$ such that the inclusion $\iota_A\colon A \to X$ is continuous. 
+	\item The restriction $f\vert_A \colon A \to Y$ is continuous. 
+	\item If $f(X)\subseteq B$, then corestriction $f\vert^B \colon X \to B$ is continuous.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $f\colon X \to Y$ be a function between topological spaces. Assume that $\{U_i\mid i \in \Lambda\}$ is a collection of open sets in $X$ such that $X=\bigcup_{i\in \Lambda} U_i$. Prove that $f$ is continuous if and only if, for all $i\in \Lambda$, the restriction $f \vert_{U_i} \colon U_i \to Y$ is continuous. 
+\end{problem}
+
+\end{document}
+
+
+
+
+

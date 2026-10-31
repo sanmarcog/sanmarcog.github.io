@@ -1,0 +1,127 @@
+\section{Lecture 5 (January 22, 2025): Monoidal categories and braidings}\label{lec5}
+\noindent\textit{Scribe: Jackson Morris}
+ 
+We now introduce monoidal categories and braidings. For further references, see \cite{EGNO} sections 2, 5, and 8. Last time we defined what an abelian $k$-linear category was, with the prototypical example being the category $G$-mod where $G$ is an affine group scheme over $k$. Today, we abstract those definitions and build on them.
+
+\begin{definition}
+    A \textit{monoidal structure} on a category $\mathcal{C}$ consists of $(\otimes,a,\mathbb{1},\iota)$, where:
+    \begin{itemize}
+        \item $- \otimes -:\mathcal{C} \times \mathcal{C} \to \mathcal{C}$ is a bifunctor;
+        \item $a_{X,Y,Z}:(X\otimes Y)\otimes Z\to X\otimes(Y\otimes Z)$ is a natural isomorphism,
+    \end{itemize}
+    such that the following holds:
+    \begin{enumerate}
+    \item The following diagram commutes:\[\begin{tikzcd}[column sep=small]
+	& {((W \otimes X) \otimes Y) \otimes Z} \\
+	{(W \otimes (X \otimes Y)) \otimes Z} && {(W \otimes X) \otimes (Y \otimes Z)} \\
+	{W \otimes ((X \otimes Y) \otimes Z)} && {W \otimes (X \otimes (Y \otimes Z))}
+	\arrow["{a_{W,X,Y} \otimes Z}"'{pos=0.6}, from=1-2, to=2-1]
+	\arrow["{a_{W \otimes X, Y, Z}}", from=1-2, to=2-3]
+	\arrow["{a_{W, X \otimes Y, Z}}"', from=2-1, to=3-1]
+	\arrow["{a_{W,X,Y \otimes Z}}", from=2-3, to=3-3]
+	\arrow["{W \otimes a_{X, Y, Z}}"', from=3-1, to=3-3]
+    \end{tikzcd}\]
+    which we call the \textit{pentagon axiom};
+    \item There is a pair $(\mathbb{1}, \iota)$ where $\mathbb{1} \in \text{ob}\mathcal{C}$ and
+    \[ \iota: \mathbb{1} \otimes \mathbb{1} \to \mathbb{1}\]
+    is an isomorphism such that the functors
+    \[L_\mathbb{1}:X \mapsto \mathbb{1} \otimes X, \, R_\mathbb{1}:X \mapsto X \otimes \mathbb{1}\]
+    are equivalences. We call this the \textit{unit axiom}.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+\hfill
+    \begin{itemize}
+        \item If we are only given a tensor product and associator $(\otimes, a)$ which satisfy the pentagon axiom, then in fact the existence of a pair $(\mathbb{1}, \iota)$ is a property and not any additional structure. More precisely, a unit pair is unique up to a unique isomorphism preserving its multiplication $\iota$.
+        \item Using the functors $L_\mathbb{1}$ and $R_{\mathbb{1}}$, we can get natural isomorphisms
+        \[r: -\otimes \mathbb{1} \to -, \, \text{and} \, l:\mathbb{1} \otimes - \to -\]
+        for which the \textit{triangle axiom} holds, which is the commutativity of the following diagram:
+        \[\begin{tikzcd}
+	{(X \otimes \mathbb{1}) \otimes Y} && {X \otimes (\mathbb{1} \otimes Y)} \\
+	& {X \otimes Y}
+	\arrow["{a_{X, \mathbb{1}, Y}}", from=1-1, to=1-3]
+	\arrow["{r_X \otimes Y}"', from=1-1, to=2-2]
+	\arrow["{X \otimes l_Y}", from=1-3, to=2-2]
+\end{tikzcd}\]
+    \end{itemize}
+\end{remark}
+
+The following equivalence is proved in \cite[Section 2.2]{EGNO}.
+
+\begin{theorem}
+    Given a structure $(\mathcal{C}, \otimes, a)$ satisfying the pentagon axiom, then the data of $(\mathbb{1}, \iota)$ satisfying the unit axiom is equivalent to the data $(\mathbb{1}, l, r)$ satisfying the triangle axiom.
+\end{theorem}
+
+We also use the following coherence theorem; see \cite[Theorem 2.9.2]{EGNO}.
+
+\begin{theorem}
+    [\textbf{Mac Lane's Coherence Theorem}] In a monoidal category, given any two parenthesizations $P_1$ and $P_2$ of the object $X_1 \otimes \cdots \otimes X_n$, then any two isomorphisms $P_1 \to P_2$ obtained by using associators, their inverses, and tensor products with identity morphisms are actually the same.
+\end{theorem}
+This extends the pentagon axiom to products of arbitrary length and allows us to suppress parentheses in tensor calculations.
+
+Here are some examples of monoidal categories.
+\begin{example}
+    Take $\text{Vect}_k$ with the usual tensor product $\otimes_k = \otimes$. Then the associator is the one which ``ignores parentheses":
+    \[a_{X,Y,Z}:(X \otimes Y) \otimes Z \to X \otimes (Y \otimes Z).\]
+\end{example}
+
+\begin{example}
+    Now, take $A$ to be a Hopf algebra and consider the category $A-\text{mod}_k$, where the tensor product is given by tensoring the underlying $k$-vector spaces, and $A$ acts on $X \otimes_k Y$ by
+    \[a(x \otimes y) = \sum a_1 x \otimes a_2 y,\]
+    where $\Delta(a) = \sum a_1 \otimes a_2$.
+    The associator is inherited from $\text{Vect}_k$, and the unit is $k$ with action $a\cdot t=\varepsilon(a)t$. Coassociativity gives associativity of the tensor action, while the counit identities give the unit constraints. In fact, a bialgebra suffices for this example.
+\end{example}
+
+\begin{definition}
+    A \textit{braided structure} on a monoidal category $(\mathcal{C}, \otimes, a)$ is a natural isomorphism
+    \[c_{X,Y}:X\otimes Y\to Y\otimes X\]
+    satisfying two hexagon identities, which are the following commutative diagrams:
+    \[\begin{tikzcd}
+	& {(Y \otimes X) \otimes Z} & {Y \otimes (X \otimes Z)} \\
+	{(X \otimes Y) \otimes Z} &&& {Y \otimes (Z \otimes X)} \\
+	& {X \otimes(Y \otimes Z)} & {(Y \otimes Z) \otimes X}
+	\arrow["{a_{Y,X,Z}}", from=1-2, to=1-3]
+	\arrow["{Y \otimes c_{X,Z}}", from=1-3, to=2-4]
+	\arrow["{c_{X,Y} \otimes Z}", from=2-1, to=1-2]
+	\arrow["{a_{X,Y,Z}}"', from=2-1, to=3-2]
+	\arrow["{c_{X,Y \otimes Z}}"', from=3-2, to=3-3]
+	\arrow["{a_{Y,Z,X}}"', from=3-3, to=2-4]
+    \end{tikzcd}\]   
+    and
+    \[\begin{tikzcd}
+	& {X \otimes (Z \otimes Y)} & {(X \otimes Z) \otimes Y} \\
+	{X \otimes (Y\otimes Z)} &&& {(Z \otimes X) \otimes Y} \\
+	& {(X \otimes Y) \otimes Z} & {Z \otimes (X \otimes Y)}
+	\arrow["{a^{-1}_{X,Z,Y}}", from=1-2, to=1-3]
+	\arrow["{c_{X,Z} \otimes Y}", from=1-3, to=2-4]
+	\arrow["{X \otimes c_{Y,Z}}", from=2-1, to=1-2]
+	\arrow["{a^{-1}_{X,Y,Z}}"', from=2-1, to=3-2]
+	\arrow["{c_{X \otimes Y, Z}}"', from=3-2, to=3-3]
+	\arrow["{a^{-1}_{Z,X,Y}}"', from=3-3, to=2-4]
+\end{tikzcd}\]
+\end{definition}
+
+Suppressing associators, the hexagon identities read
+\[
+ c_{X,Y\otimes Z}=(\mathrm{id}_Y\otimes c_{X,Z})(c_{X,Y}\otimes\mathrm{id}_Z),
+\]
+\[
+ c_{X\otimes Y,Z}=(c_{X,Z}\otimes\mathrm{id}_Y)(\mathrm{id}_X\otimes c_{Y,Z}).
+\]
+The associators in the diagrams make these formulas meaningful without a strictness assumption.
+
+\begin{example}
+    In $\text{Vect}_k$, the braid map is the obvious one:
+    \[c:X \otimes Y \to Y \otimes X, \, x \otimes y \mapsto y \otimes x.\]
+\end{example}
+
+\begin{example}
+    In $A-\text{mod}_k$, the underlying braiding map of $\text{Vect}_k$ lifts to one in $A-\text{mod}_k$ exactly when the flip is $A$-linear; this holds when $\sum a_1\otimes a_2=\sum a_2\otimes a_1$, namely when $A$ is cocommutative. Conversely, if the flip is $A$-linear for all modules, apply it to $1\otimes1$ in the tensor square of the regular module to obtain cocommutativity. For finite-dimensional modules this converse applies when $A$ is finite dimensional.
+    For a particular instance when we can do this, take $A=kG$, the group algebra for some group $G$. Then for any two $G$-modules $X, Y \in G-\text{mod}$, then we can place a $G$-module structure on $X \otimes_k Y$ by
+    \[g(x \otimes y) = gx \otimes gy,\]
+    since the comultiplication on $g \in G$ is grouplike by construction. This also is a cocommutative Hopf algebra, and so the underlying braiding from $\text{Vect}_k$ lifts.
+\end{example}
+
+More generally, a quasitriangular structure on a Hopf algebra gives a braiding on its module category. When $A$ is finite dimensional, all braidings on its finite-dimensional module category arise this way; see \cite[Section 8.3]{EGNO}.
+

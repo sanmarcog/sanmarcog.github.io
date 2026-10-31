@@ -1,0 +1,99 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=.7cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}\setlist{itemsep=0.5em} 
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{mathabx}
+
+
+
+
+%% header, footer definitions
+\pagestyle{fancy}
+\fancyhead[L]{Math 441}
+\fancyhead[C]{Homework 7} 
+\fancyhead[R]{Due on August 14} 
+
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+% custom solution environment
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+\newcommand*{\norm}[1]{\lvert \lvert #1\rvert\rvert}     %norm 
+
+% operators
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\sgn}{sgn}
+
+
+
+
+\begin{document}
+
+%\noindent Your name! \hfill  The date 
+
+%\vskip10pt
+
+\begin{problem}
+\begin{enumerate}
+	\item Prove that any set endowed with the cofinite topology is compact.
+	\item When is a set endowed with the cocountable topology compact? 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Let $X$ and $Y$ be subspaces of $\R^n$. For each of the following situations, determine whether $X$ and $Y$ can be homeomorphic
+\begin{enumerate}
+	\item $X$ closed and bounded, $Y$ closed but not bounded.
+	\item $X$ bounded, $Y$ non-bounded.
+	\item $X$ closed and bounded, $Y$ bounded but not closed.
+	\item $X$ closed, $Y$ not closed.
+\end{enumerate}
+If you think that such $X$ and $Y$ exist, give an example (and justify). Otherwise
+prove why no such pairs exist.
+\end{problem}
+
+
+\begin{problem} Using connectedness and compactness, prove that the following spaces are nor  homeomorphic 
+\[ [0, 1], \quad [0,1), \quad  \R, \quad  \R^2, \quad  S^1.\]
+\end{problem}
+
+
+\end{document}
+
+
+
+
+

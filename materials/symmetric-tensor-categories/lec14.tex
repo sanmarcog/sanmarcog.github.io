@@ -1,0 +1,181 @@
+\section{Lecture 14 (February 14, 2025, est.): Relative Tannaka duality}
+\label{lec14}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+\subsection{Changing the target of a fiber functor}
+
+The next goal is to study symmetric tensor categories by realizing them as
+categories of representations of affine group schemes in a suitable symmetric
+tensor category. Ordinary Tannaka duality uses $\Vect_k$ as the target; the
+relative version allows a different target $\mathcal D$.
+
+Fix a perfect field $k$. In this lecture, a symmetric tensor category is
+essentially small, $k$-linear, abelian and rigid, with finite-dimensional
+morphism spaces, objects of finite length, and
+$\End(\1)=k$. A tensor functor is exact, $k$-linear and strong symmetric
+monoidal. Such a functor is faithful. Write $\operatorname{Symm}_k$ for the
+category of these categories and isomorphism classes of tensor functors.
+Its full subcategory of categories of moderate growth consists of those
+$\mathcal C$ for which, for each $X\in\mathcal C$, there is a real number
+$a_X\geq1$ satisfying
+\[
+ \operatorname{length}(X^{\otimes n})\leq a_X^n\qquad(n\geq1).
+\]
+
+Fix $\mathcal D\in\operatorname{Symm}_k$. An object of
+$\operatorname{Symm}(\mathcal D)$ is a pair $(\mathcal C,F)$ with
+$F:\mathcal C\to\mathcal D$ a tensor functor. A morphism from
+$(\mathcal C_1,F_1)$ to $(\mathcal C_2,F_2)$ is represented by a pair
+$(T,\alpha)$, where $T:\mathcal C_1\to\mathcal C_2$ is a tensor functor
+and $\alpha:F_1\xrightarrow{\sim}F_2T$ is a monoidal natural isomorphism.
+We identify two such pairs when there is a compatible monoidal natural
+isomorphism between their functors $T$. Because $F_2$ is faithful, a
+compatible isomorphism between two fixed pairs is unique if it exists.
+This does not say that the morphisms of $\operatorname{Symm}(\mathcal D)$
+themselves are unique.
+
+\subsection{The internal group of tensor automorphisms}
+
+An affine group scheme in $\mathcal D$ is described by a commutative Hopf
+algebra in $\Ind(\mathcal D)$. The ind-completion is necessary: a coordinate
+algebra need not be an object of finite length. If $F:\mathcal C\to\mathcal D$
+is a tensor functor, the coefficient construction gives a commutative Hopf
+algebra
+\[
+ A_F=\int^{X\in\mathcal C}F(X)^*\otimes F(X)
+       \quad\text{in }\Ind(\mathcal D).
+\]
+Here the integral denotes a coend. Concretely, its structure maps
+$i_X:F(X)^*\otimes F(X)\to A_F$ satisfy, for every $f:X\to Y$,
+\[
+ i_X\bigl(F(f)^*\otimes\id_{F(X)}\bigr)
+ =i_Y\bigl(\id_{F(Y)^*}\otimes F(f)\bigr)
+ \quad\text{on }F(Y)^*\otimes F(X).
+\]
+It is universal for families with these relations. Tensor products in
+$\mathcal C$ define multiplication, the unit object defines the unit,
+evaluation and coevaluation define the coalgebra structure, and duality
+defines the antipode. Symmetry makes the multiplication commutative.
+This is the internal analogue of the matrix-coefficient Hopf algebra.
+
+\begin{definition}
+The affine group scheme represented by $A_F$ is denoted
+$\underline{\Aut}^{\otimes}(F)$. The \emph{fundamental group} of
+$\mathcal D$ is
+\[
+ \pi(\mathcal D)=\underline{\Aut}^{\otimes}(\Id_{\mathcal D}).
+\]
+\end{definition}
+
+The universal coefficient coactions make every object of $\mathcal D$, and
+then every ind-object, a representation of $\pi(\mathcal D)$. Naturality
+means that every morphism in $\mathcal D$ respects these canonical actions.
+Applying the canonical action to the objects $F(X)$ gives a homomorphism
+\[
+ \psi_F:\pi(\mathcal D)\longrightarrow
+             \underline{\Aut}^{\otimes}(F).
+\]
+
+\begin{example}
+We have $\pi(\Vect_k)=1$. Indeed, naturality with respect to maps
+$k\to V$, together with the tensor-unit condition, forces a tensor
+automorphism of the identity to be the identity on every vector space.
+If $\operatorname{char}k\ne2$, then
+$\pi(\SVec_k)=\mu_2\cong\mathbb Z/2$, regarded as an internal group
+concentrated in even degree. Its nontrivial element acts as $+1$ on the
+even part and $-1$ on the odd part. This is the parity automorphism,
+not the functor that exchanges even and odd degrees.
+\end{example}
+
+\subsection{Compatible groups and representations}
+
+Not every homomorphism from $\pi(\mathcal D)$ to an internal group is
+compatible with the structure already present in $\mathcal D$.
+
+\begin{definition}
+A \emph{$\mathcal D$-group} is a pair $(G,\phi)$, where $G$ is an affine
+group scheme in $\mathcal D$ and $\phi:\pi(\mathcal D)\to G$ is a
+homomorphism such that the canonical action of $\pi(\mathcal D)$ on
+$\mathcal O(G)$ equals the action induced by conjugation in $G$ along
+$\phi$.
+A morphism $(G,\phi)\to(H,\psi)$ is a homomorphism $u:G\to H$ with
+$u\phi=\psi$.
+\end{definition}
+
+For clarity, put $A=\mathcal O(G)$ and $B=\mathcal O(\pi(\mathcal D))$.
+Using left coactions, the compatibility condition says that the canonical
+map $A\to B\otimes A$ is the composite
+\[
+ A\xrightarrow{\Delta^{(2)}} A\otimes A\otimes A
+ \xrightarrow{\phi^*\otimes\id\otimes S_B\phi^*}
+ B\otimes A\otimes B
+ \xrightarrow{(m_B\otimes\id)(\id\otimes c_{A,B})}
+ B\otimes A.
+\]
+The last arrow uses the symmetry to bring the two $B$ factors together.
+The pair $(\underline{\Aut}^{\otimes}(F),\psi_F)$ is a
+$\mathcal D$-group.
+
+\begin{definition}
+For a $\mathcal D$-group $(G,\phi)$, let
+$\Rep_{\mathcal D}(G,\phi)$ be the full subcategory of representations
+of $G$ on objects of $\mathcal D$ whose restriction along $\phi$ is the
+canonical $\pi(\mathcal D)$-action. It has a forgetful tensor functor
+$\omega:\Rep_{\mathcal D}(G,\phi)\to\mathcal D$.
+\end{definition}
+
+\begin{theorem}[Relative Tannaka duality]
+The assignments
+\[
+ (\mathcal C,F)\longmapsto
+ (\underline{\Aut}^{\otimes}(F),\psi_F),
+ \qquad
+ (G,\phi)\longmapsto
+ (\Rep_{\mathcal D}(G,\phi),\omega)
+\]
+give mutually inverse \emph{contravariant} equivalences between
+$\operatorname{Symm}(\mathcal D)$ and the category of $\mathcal D$-groups.
+\end{theorem}
+
+This is the relative reconstruction theorem; see
+\cite[\S4, Theorem 4.2.1]{CEOIncompressible}. Its full reconstruction
+proof is not part of this lecture. The variance can be checked directly:
+a pair $(T,\alpha)$ as above sends an automorphism $\xi$ of $F_2$ to
+\[
+ \alpha^{-1}(\xi T)\alpha
+       \in\underline{\Aut}^{\otimes}(F_1).
+\]
+Thus a functor between representation categories produces a group
+homomorphism in the opposite direction. For $\mathcal D=\Vect_k$,
+the fundamental group is trivial and we recover ordinary neutral
+Tannaka duality.
+
+\begin{example}
+For $\mathcal D=\SVec_k$, $\operatorname{char}k\ne2$, an internal
+group is an affine supergroup. A compatible map $\mu_2\to G$ is
+specified by an even element $z\in G(k)$ with $z^2=1$ whose conjugation
+action is the parity automorphism of $\mathcal O(G)$. The category
+$\Rep(G,z)$ consists of representations on which $z$ acts by parity.
+If $G$ is purely even, the condition makes $z$ central. For a general
+supergroup, centrality must not replace the parity-conjugation condition.
+\end{example}
+
+\subsection{The characteristic-zero classification}
+
+Now suppose that $k$ is algebraically closed of characteristic zero.
+Deligne's theorem states that a symmetric tensor category admits a
+fiber functor to $\SVec_k$ if and only if it has moderate growth.
+Consequently it is of the form $\Rep(G,z)$ above. The fiber functor,
+when it exists, is unique up to monoidal natural isomorphism; the
+isomorphism need not be unique. These statements apply to arbitrary
+essentially small pretannakian categories; no tensor-generation
+hypothesis is imposed. For this formulation and uniqueness, see
+\cite[\S\S1.1, 1.5]{CEOIncompressible}. In the ordinary Tannakian case,
+uniqueness without a finite-generation hypothesis also follows from
+\cite[Corollary 1.2]{WibmerTorsors}.
+
+The ordinary Tannakian criterion is stronger: there is a fiber functor
+to $\Vect_k$ if and only if, for every object $X$, some exterior power
+$\bigwedge^{n_X}X$ vanishes. The bound may depend on $X$. The next
+lecture explains why arbitrary Schur functors replace exterior powers
+in the super version of this criterion.

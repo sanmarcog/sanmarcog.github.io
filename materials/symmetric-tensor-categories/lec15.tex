@@ -1,0 +1,218 @@
+\section{Lecture 15 (February 19, 2025, est.): Schur functors and Deligne's theorem}
+\label{lec15}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+Throughout this lecture, $k$ is algebraically closed of characteristic
+zero. We follow the framework of \cite{Deligne2002}. For part of the
+discussion, one may drop the finite-length and finite-dimensional-Hom
+conditions: retain an essentially small $k$-linear abelian rigid symmetric
+monoidal category $\mathcal C$ with $\End(\1)=k$. Tensor product is exact
+in each variable, because rigidity supplies both adjoints. These are
+still substantive hypotheses; retaining rigidity alone would not suffice.
+
+\subsection{The statement and the finiteness condition}
+
+\begin{definition}
+An object $X\in\mathcal C$ is of \emph{moderate growth} if its tensor
+powers have finite length and there is $a_X\geq1$ with
+\[
+ \operatorname{length}(X^{\otimes n})\leq a_X^n
+       \qquad(n\geq1).
+\]
+It is \emph{Schur-finite} if $S^\lambda(X)=0$ for some partition
+$\lambda$, where the Schur functor is defined below.
+\end{definition}
+
+\begin{theorem}[Deligne]
+An object is Schur-finite if and only if it is of moderate growth.
+Schur-finite objects are closed under finite direct sums, tensor products,
+duals, extensions and subquotients. A symmetric tensor category has a
+fiber functor to $\SVec_k$ if and only if all its objects are Schur-finite.
+\end{theorem}
+
+The existence of the super fiber functor is the deep part of this
+theorem. This lecture establishes the Schur decomposition and the
+implication from moderate growth to Schur-finiteness, and records the
+representation-theoretic tools used in the full proof. The remaining
+arguments are in \cite[Proposition 0.5 and Theorem 0.6]{Deligne2002};
+they are not consequences of the growth estimate alone.
+
+\begin{lemma}
+If every object of $\mathcal C$ has finite length, then every morphism
+space is finite-dimensional.
+\end{lemma}
+\begin{proof}
+We use the standard simple-unit lemma for rigid abelian tensor
+categories: every subobject of $\1$ is a direct summand, so
+$\End(\1)=k$ implies that $\1$ is simple
+\cite[Proposition 1.17]{DMTannakian}. This is the input used in
+\cite[Proposition 1.1]{Deligne2002}; we do not prove that lemma here.
+For an object $Z$ of finite length, a linearly independent family of
+maps $\1\to Z$ gives a monomorphism from the corresponding finite
+direct sum of copies of $\1$ to $Z$: any kernel is a direct sum of
+copies of the simple object $\1$ and would give a linear relation.
+Thus $\dim_k\Hom(\1,Z)\leq\operatorname{length}(Z)$.
+Finally rigidity gives
+\[
+ \Hom(X,Y)\cong\Hom(\1,X^*\otimes Y),
+\]
+and $X^*\otimes Y$ has finite length by assumption.
+\end{proof}
+
+\subsection{Finite-group actions inside a category}
+
+For a finite-dimensional vector space $V$ and $X\in\mathcal C$, the
+notation $V\otimes X$ denotes the corresponding finite direct sum of
+copies of $X$, characterized independently of a choice of basis.
+Define
+\[
+ \underline{\Hom}(V,X)=V^*\otimes X.
+\]
+Suppose a finite group $G$ acts on $X$, that is, we have a homomorphism
+$G\to\Aut_{\mathcal C}(X)$. The averaging operator
+\[
+ e_G=\frac1{|G|}\sum_{g\in G}g\in\End_{\mathcal C}(X)
+\]
+is idempotent. Its image is the invariant object $X^G$. Its kernel is
+the sum of the images of $g-1$, so the coinvariant object
+$X_G=\operatorname{coker}(\bigoplus_{g\in G}X\xrightarrow{(g-1)}X)$
+is canonically isomorphic to $\im e_G$.
+
+If $V\in\Rep_k(G)$, there is a diagonal action on $V^*\otimes X$,
+and we put
+\[
+ \underline{\Hom}_G(V,X)=(V^*\otimes X)^G.
+\]
+This is an object of $\mathcal C$, rather than merely the vector space
+of morphisms from $V$ to $X$.
+
+\begin{proposition}[Isotypic decomposition]
+Let $(V_\lambda)_{\lambda\in I}$ be representatives of the irreducible
+$kG$-modules. For every object $X$ carrying a $G$-action, evaluation
+induces a natural $G$-equivariant isomorphism
+\[
+ \bigoplus_{\lambda\in I}
+ V_\lambda\otimes\underline{\Hom}_G(V_\lambda,X)
+       \xrightarrow{\sim}X.
+\]
+\end{proposition}
+\begin{proof}
+Maschke's theorem and the algebraic closure of $k$ give
+$kG\cong\prod_{\lambda\in I}\End_k(V_\lambda)$.
+The central idempotents split $X$ into isotypic summands. In the
+$\lambda$-summand, matrix units split it into $\dim V_\lambda$
+isomorphic summands; their multiplicity object is precisely
+$(V_\lambda^*\otimes X)^G$. The resulting isomorphism is evaluation,
+so it is independent of the matrix units chosen.
+\end{proof}
+
+\subsection{Partitions and Schur functors}
+
+A partition of $n$ is a finite sequence
+$\lambda=(\lambda_1,\ldots,\lambda_r)$ with
+$\lambda_1\geq\cdots\geq\lambda_r>0$ and
+$|\lambda|=\sum_i\lambda_i=n$. Its Young diagram is
+\[
+ [\lambda]=\{(i,j):1\leq i\leq r,\ 1\leq j\leq\lambda_i\}.
+\]
+The transpose $\lambda^{\mathsf t}$ is defined by interchanging the
+two coordinates. For example, $(3,1)^{\mathsf t}=(2,1,1)$.
+We also allow the empty partition of $0$, with Schur functor equal
+to the constant unit object; this convention is used in the direct-sum
+formula below.
+The irreducible representations of $S_n$ are indexed by partitions of
+$n$; write $V_\lambda$ for the corresponding representation.
+
+The symmetry on $\mathcal C$ defines an action of $S_n$ on
+$X^{\otimes n}$ by adjacent transpositions. The symmetric, rather
+than merely braided, condition ensures that these transpositions
+square to the identity.
+
+\begin{definition}
+For $\lambda\vdash n$, the \emph{Schur functor} is
+\[
+ S^\lambda(X)=
+ \underline{\Hom}_{S_n}(V_\lambda,X^{\otimes n}).
+\]
+\end{definition}
+
+Applying the isotypic decomposition gives
+\begin{equation}\label{eq:lec15-schur-decomposition}
+ X^{\otimes n}\cong
+ \bigoplus_{\lambda\vdash n}V_\lambda\otimes S^\lambda(X).
+\end{equation}
+For the one-row and one-column partitions,
+$V_{(n)}$ is trivial and $V_{(1^n)}$ is the sign representation.
+Consequently
+\[
+ S^{(n)}(X)=\Sym^n(X),\qquad
+ S^{(1^n)}(X)=\bigwedge^nX.
+\]
+In characteristic zero these are the images of the symmetrizing and
+antisymmetrizing idempotents, respectively.
+
+\begin{proposition}
+If $X$ is of moderate growth, then some Schur functor annihilates $X$.
+\end{proposition}
+\begin{proof}
+Suppose instead that $S^\lambda(X)\ne0$ for every partition $\lambda$.
+Each summand in \eqref{eq:lec15-schur-decomposition} then contributes
+at least $\dim V_\lambda$ to the length. Therefore
+\[
+ \operatorname{length}(X^{\otimes n})
+ \geq\sum_{\lambda\vdash n}\dim V_\lambda
+ \geq\left(\sum_{\lambda\vdash n}(\dim V_\lambda)^2\right)^{1/2}
+ =\sqrt{n!}.
+\]
+The last equality is the dimension of the regular representation of
+$S_n$. For even $n$, $n!\geq(n/2)^{n/2}$, so
+$(\sqrt{n!})^{1/n}\geq(n/2)^{1/4}$ tends to infinity.
+This contradicts any exponential bound $a_X^n$.
+\end{proof}
+
+\begin{example}
+For an ordinary vector space of dimension $d$, $\bigwedge^{d+1}V=0$.
+An odd one-dimensional supervector space instead has
+$\Sym^2(V)=0$, while its exterior powers never vanish. Thus exterior
+powers alone cannot characterize super fiber functors. Schur functors
+allow both kinds of vanishing.
+\end{example}
+
+\subsection{Restriction, induction, and multiplicities}
+
+For $n=n_1+\cdots+n_r$, the Young subgroup
+$S_{n_1}\times\cdots\times S_{n_r}\subseteq S_n$ acts on consecutive
+blocks of letters. Its irreducibles are the external tensor products
+$V_{\mu_1}\boxtimes\cdots\boxtimes V_{\mu_r}$, with
+$\mu_i\vdash n_i$. Define
+\[
+ [\lambda:\mu_1,\ldots,\mu_r]
+ =\dim_k\Hom_{\prod_iS_{n_i}}
+ \left(\boxtimes_iV_{\mu_i},
+       \operatorname{Res}^{S_n}_{\prod_iS_{n_i}}V_\lambda\right).
+\]
+Frobenius reciprocity identifies this with the multiplicity of
+$V_\lambda$ in
+$\operatorname{Ind}^{S_n}_{\prod_iS_{n_i}}(\boxtimes_iV_{\mu_i})$.
+These nonnegative integers are computed by the
+Littlewood--Richardson rule, iterated when $r>2$.
+
+For example, when $r=2$ the same decomposition yields
+\[
+ S^\lambda(X\oplus Y)\cong
+ \bigoplus_{|\mu|+|\nu|=|\lambda|}
+ \left(S^\mu(X)\otimes S^\nu(Y)\right)^%
+ {\oplus[\lambda:\mu,\nu]}.
+\]
+Indeed, expand $(X\oplus Y)^{\otimes n}$ by the subsets of tensor
+positions occupied by $X$; each fixed cardinality is induced from its
+Young subgroup, and then apply the multiplicity-object functor.
+Likewise,
+\[
+ S^\mu(X)\otimes S^\nu(X)\cong
+ \bigoplus_{\lambda\vdash |\mu|+|\nu|}
+ S^\lambda(X)^{\oplus[\lambda:\mu,\nu]}.
+\]
+These formulas explain how the representation theory of symmetric
+groups controls the operations appearing in the Schur-finiteness
+criterion.

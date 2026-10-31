@@ -1,0 +1,118 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=.7cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}\setlist{itemsep=0.5em} 
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{mathabx}
+
+
+
+
+%% header, footer definitions
+\pagestyle{fancy}
+\fancyhead[L]{Math 441}
+\fancyhead[C]{Homework 4} 
+\fancyhead[R]{Due on July 17} 
+
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+% custom solution environment
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+
+
+% operators
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+
+
+
+\begin{document}
+
+%\noindent Your name! \hfill  The date 
+
+%\vskip10pt
+
+\begin{problem}
+Let $(X,d)$ be a metric space and let $\mathcal T_d$ denote the metric topology induced by $d$ and let $X_d$ denote the topological space $(X,\mathcal T_d)$.  
+\begin{enumerate}
+	\item Prove that $d\colon X_d \times X_d \to \mathbb R_{\text{std}}$ is continuous. 
+	\item Prove that if $\mathcal T$ is another topology on $X$ such that $d\colon (X,\mathcal T) \times  (X,\mathcal T) \to \mathbb R_{\text{std}}$ is continuous, then $\mathcal T_d$ is coarser  than $\mathcal T$. 
+\end{enumerate}
+\textbf{Note:} This proves that the metric topology $\mathcal T_d$ is the coarsest topology on $X$ such that the given distance  function $d\colon X\times X \to \mathbb R$ is continuous. 
+\end{problem}
+\begin{problem}		
+	
+Let $(X,d)$ be a metric space. Define a new metric on $X$ by 
+\[\overline{d}(x,y)=\frac{d(x,y)}{1+d(x,y)} \text{ for all }x,y\in X.\]
+\begin{enumerate}
+	\item Verify that $\overline{d}$ is a metric. 
+	
+	\emph{Hint:} For the triangle inequality of $\overline{d}$, use that of $d$ and the fact that the map $f\colon  [0,\infty) \to [ 0,1)$, where $f(x)=\frac{x}{1+x}$, is increasing and satisfies $f(a) + f(b) \geq f(a+b)$.
+	
+	\item Prove that $d$ and $\overline {d}$ induce the same topology.
+	\emph{Hint:} Use Problem 1, and the fact that both $f$ and its inverse are continuous.
+	
+	\item For $X=\mathbb R$, show that $d$ and $\overline{d}$ are not equivalent in general.
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+Let $(X,d)$ be a metric space and let $Y\subseteq X$ be a subset. The restriction of $d$ to $Y$ defines a metric on $Y$
+\[d_Y \colon Y\times Y \to [0,\infty), \quad d_Y(x,y)=d(x,y) \text{ for all }x,y\in Y.\]
+Show that the metric topology on $Y$ associated to $d_Y$ coincides with the induced topology of $Y$ as a subspace of $X$. 
+\end{problem}
+
+\begin{problem}
+Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. Assume that $f\colon X\to Y$ is a function such that 
+\[d_Y(f(x_1), f(x_2))=d_X(x_1, x_2) \qquad \text{ for all } x_1, x_2 \in X\]
+\begin{enumerate}
+	\item Prove that $f$ is injective.
+\item Prove that $f\colon X \to Y$ is continuous.
+\item Prove that $f\colon X \to f(X)$ is open, where $f(X) \subseteq Y $ has the induced topology.
+\end{enumerate}
+\textbf{Note:} This proves that the corestriction $f\colon X \to f(X)$ is a homeomorphism. In this case, $f$ is said to be an imbedding of $X$ into $Y$.
+\end{problem}
+
+\begin{problem}
+Let $X$ be a topological space and consider $X \times X$ with the product topology. Prove that $X$ is Hausdorff if and only if the \emph{diagonal} $\Delta =\{(x,y) \in X\times X \mid x=y\} $ is closed in $X\times X$.  
+\end{problem}
+
+\end{document}
+
+
+
+
+

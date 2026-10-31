@@ -1,0 +1,186 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=1cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=0.5em}
+\usepackage{xcolor}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usepackage[colorlinks = true,
+linkcolor = forestgreen,
+urlcolor  = forestgreen,
+citecolor = forestgreen,
+anchorcolor = forestgreen]{hyperref}
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{tikz}
+\usepackage{mathabx}
+%\usepackage{lastpage}
+
+
+
+
+
+%% header, footer definitions
+\def\course{MATH 314}
+\def\courselink{https://www.gsanmarco.com/graph-theory}
+\def\assignment{HW \#2}
+\def\assignlink{hw02.tex}
+\def\due{Due on Jan 31}
+
+
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\course}
+\fancyhead[C]{\assignment} 
+\fancyhead[R]{\due} 
+%\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot{}
+%\fancyfoot[R]{\fontsize{8}{10} \selectfont  Page \thepage~of \pageref{LastPage}}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont  Source file available at \href{\courselink}{\textbf{\courselink}}}
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{Solution}{Solution}
+% custom
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+\newcommand*{\eps}{\varepsilon}            % prettier epsilon
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\F}{\mathbb{F}}               % field
+\newcommand*{\family}{\mathcal{F}}         % family
+\newcommand*{\GL}{\mathbf{GL}}             % general linear group
+\newcommand*{\what}[1]{\widehat{#1}}       % wider hat
+\newcommand*{\wbar}[1]{\overline{#1}}      % wider bar
+\newcommand*{\mcal}[1]{\mathcal{#1}}       % mathcal
+\newcommand*{\mbf}[1]{\mathbf{#1}}         % mathbf
+\newcommand*{\mbb}[1]{\mathbb{#1}}         % mathbb
+
+% operators
+\let\Pr\relax\DeclareMathOperator*{\Pr}{\mathbf{Pr}}       % probability
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+
+
+
+\begin{document}
+%\noindent  Unless explicitly requested by a problem, do not include sketches as part of your proof. You are free to use the result from any problem on this (or previous) assignment as a part of your solution to a different problem even if you have not solved the former problem.
+%\vskip10pt
+
+\begin{problem}[1 pt]
+	Recall that a \emph{directed graph} (or digraph) is a pair $D=(V,E)$ where $V$ is a set and $E\subseteq \{(u,v) \in V\times V \colon u\ne v\}$.
+	For $u,v\in V$, a $u$-$v$ diwalk in $D$ is a sequence $(u=v_0,\dots,v_k=v)$ such that $(v_i,v_{i+1})\in E$ for all $i\in\{0,\dots,k-1\}$.
+	
+	Consider the relation $R$ on $V$ where $u\mathbin R v$ iff there is a $u$-$v$ diwalk.
+	Give an example of a digraph $D$ where $R$ is \textbf{not} an equivalence relation.
+	Justify your answer.
+	(Feel free to draw a picture of $D$)
+\end{problem}
+\begin{solution}
+Consider the digraph $D$ with two vertices $\{a, b\}$ and a unique arc $E=\{(a,b)\}$. Then $a\mathbin R b$, because $(a,b)$ is an $a$--$b$ diwalk. However, since $(b,a)$ is not an arc in $D$, it follows that there is no $b$--$a$ diwalk. Thus $b$ is \textbf{not} related to $a$, and the relation $R$ fails to be symmetric.
+\end{solution}
+
+\hrulefill
+
+\begin{problem}[2 pts]
+	Let $G$ be a connected graph and consider a function $f\colon V(G)\to X$ where $X$ is some arbitrary set.
+	Prove that if $f$ is \emph{not} a constant function, then there is an edge $uv\in E(G)$ such that $f(u)\neq f(v)$.
+\end{problem}
+
+\begin{Solution}
+Let us show the contrapositive statement. Thus we assume that for any pair of vertices $u, v$ in $G$, if $uv\in E(G)$ then $f(u)=f(v)$. To see that $f$ must be constant, fix any vertex $u^*$ in $G$. Now, for any other vertex $v$, since $G$ is connected, there is a $u^*$--$v$ path in $G$, say $(u^*=v_0, v_1, \dots, v_n=v)$. This means that $v_i v_{i+1} \in E(G)$ for each $i\in\{0, 1, \dots, n-1\}$, thus $f(v_i)=f(v_{i+1})$ for any such $i$. Putting these $n$-equalities together, we get
+\[f(u^*)=f(v_0)=f(v_1)=f(v_2)=\dots=f(v_{n-1})=f(v_n)=f(v).\] 
+Thus $f(v)=f(u^*)$ for any $v\in V(G)$, and $f$ is constant. \qed
+\end{Solution}
+
+\begin{Solution}
+Since $f$ is not constant, there are vertices $u$, $v$ such that $f(u)\neq f(v)$. Since $G$ is connected, there is a $u$--$v$ path in $G$, say $(u=v_0, v_1, \dots, v_n=v)$. We claim that there must be some $i\in \{0, 1,\dots, n-1\}$ such that $f(v_i)\neq f(v_{i+1})$. Indeed, otherwise
+\[f(u)=f(v_0)=f(v_1)=f(v_2)=\dots=f(v_{n-1})=f(v_n)=f(v),\] 
+which contradicts $f(u)\neq f(v)$. Thus there is some $i\in \{0, 1,\dots, n-1\}$ such that $f(v_i)\neq f(v_{i+1})$, and we certainly have $v_iv_{i+1} \in E(G)$ because $(u=v_0, v_1, \dots, v_n=v)$ is a path.
+\end{Solution}
+
+\hrulefill
+
+\begin{problem}[2 pts]
+	Prove that every graph on at least two vertices has a pair of vertices with the same degree.
+\end{problem}
+\begin{solution}
+Suppose $G$ has $n$ vertices, thus $\deg v \in \{0, \dots, n-1\}$ for each $v\in V(G)$. Suppose for a contradiction that no two vertices have the same degree. In this case we can label the vertices $v_0, v_1, \dots v_{n-1}$ so that $\deg v_i = i$ for each $i$. Since $v_{n-1}$ has degree $n-1$, it must be adjacent to any other vertex, in particular to $v_0$. This contradicts that $\deg v_0=0$.
+\end{solution}
+
+\hrulefill
+
+\begin{problem}[2 pts]
+	Prove that if $G$ is a graph with $\delta(G)\geq 2$, then $G$ must contain a cycle.
+\end{problem}
+\begin{solution}
+Take a \textbf{maximal} path $P=(v_0, v_1, \dots, v_k)$. Since $\delta(G)\geq 2$, we have in particular $\delta(v_0)\geq 2$, which means that there is some $u\in V(G)$ with $u\ne v_1$, such that $v_0u\in E(G)$. Now we claim that $u\in V(P)$. Indeed, if not, then $(u,v_0, v_1, \dots, v_k)$ is a path in $G$, contradicting the maximality of the path $P$. Hence $u=v_i$ for some $i\geq2$, because $u\ne v_1$. This means that $v_i v_0 \in E(G)$ for some $i\geq 2$, therefore $(v_0, v_1, \dots, v_i,v_0)$ is a cycle in $G$.
+\end{solution}
+
+\hrulefill
+
+\begin{problem}[3 pts]
+	Let $G$ be a graph and let $A$ be an independent set of $G$.
+	Prove that
+	\[
+	\sum_{v\in A}\deg v \leq\abs{E(G)}
+	\]
+	with equality if and only if $G$ is bipartite with parts $A$ and $V(G)\setminus A$.
+	
+	\noindent (Especially in this problem, be sure to carefully justify all steps in your argument)
+	
+	\noindent \textbf{Hint:} consider the sets $E_v=\{\text{edges incident with } v\}$ and $\widehat{E}=\bigcup_{v \in A} E_v$. For the equality, decide when is $\widehat{E}=E(G)$.
+\end{problem}
+\begin{solution}
+We need to show the following
+\begin{enumerate}[label=(\arabic*)]
+	\item $\displaystyle \sum_{v\in A}\deg v \leq\abs{E(G)}$, and
+	\item $\displaystyle \sum_{v\in A}\deg v = \abs{E(G)}$ if and only if $G$ is bipartite with parts $A$ and $V(G)\setminus A$.
+\end{enumerate}
+
+Following the hint, consider the sets $E_v=\{\text{edges incident with } v\}$ (for $v\in A$) and $\widehat{E}=\bigcup_{v \in A} E_v$.
+
+\medbreak
+To show $(1)$, we first claim that for any pair of different vertices $u, v$  in $A$, we have $E_u\cap E_v=\emptyset$. Indeed, if $e\in E_u\cap E_v$, then $u\in e$ and $v\in e$. But since $u\ne v$, we get $e=uv$. This is impossible, since $A$ is independent. 
+Since $\widehat{E}\subseteq E(G)$, and using the previous claim, we get 
+\[ \abs{E(G)} \geq \abs{\widehat E}= \displaystyle  \sum_{v\in A}\abs{E_v}= \sum_{v\in A}\deg v.\]
+
+For part $(2)$, notice first that since $V(G)=A \sqcup (V(G)\setminus A)$ is a partition, and since $A$ is independent, it follows that $V(G)=A \sqcup (V(G)\setminus A)$ is a bipartition if and only if $V(G)\setminus A$ is an independent set.
+Thus, by the previous argument, to prove $(2)$ we need to show that $E(G)=\widehat E$ if and only if $V(G)\setminus A$ is independent. 
+
+Assume first $E(G)=\widehat E$; thus any edge $e$ in $G$ is actually in $\widehat E$, which means that $e$ is incident with a vertex in $A$. Hence $G$ contains no edges between vertices in $V(G)\setminus A$, which means that $V(G)\setminus A$ is independent. Conversely, if $V(G)\setminus A$ is independent, each $e\in E(G)$ contains a vertex in $A$, which means that $e\in \widehat E$; thus $E(G)= \widehat E$.
+\end{solution}
+
+\end{document}
+
+
+
+
+

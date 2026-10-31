@@ -1,0 +1,96 @@
+\section{Lecture 11 (February 7, 2025, est.): Abelian reconstruction and transporters}\label{lec11}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+
+For the first part of reconstruction, forget the tensor structure. Let $\mathcal C$ be an essentially small $k$-linear abelian category and
+\[
+ \omega:\mathcal C\longrightarrow\mathrm{Vec}_k
+\]
+an exact faithful $k$-linear functor, with finite-dimensional values. We will construct a coalgebra $B$ and an equivalence $\mathcal C\simeq\operatorname{Comod}_{\mathrm{fd}}(B)$ compatible with $\omega$.
+
+\subsection*{Finite-dimensional algebras and coalgebras}
+If $A$ is a finite-dimensional algebra, its dual $A^*=\operatorname{Hom}_k(A,k)$ is a coalgebra, with
+\[
+ \Delta_{A^*}(\phi)(a\otimes b)=\phi(ab),\qquad
+ \varepsilon_{A^*}(\phi)=\phi(1).
+\]
+A finite-dimensional left $A$-module $M$ becomes a right $A^*$-comodule. For a basis $a_i$ of $A$ with dual basis $a_i^*$, its coaction is
+\[
+ m\longmapsto\sum_i a_i m\otimes a_i^*.
+\]
+This is independent of the basis. Associativity of the action is coassociativity of the coaction, and the unit condition is the counit identity. Conversely, a coaction gives $a\cdot m=(\mathrm{id}\otimes\operatorname{ev}_a)\rho_M(m)$. These constructions are inverse and preserve underlying vector spaces.
+
+\subsection*{Tensoring an object by a vector space}
+A $k$-linear abelian category admits an action of finite-dimensional vector spaces. For $V=k^n$, define $V\otimes X=X^{\oplus n}$ and let matrices act by the corresponding matrices of morphisms. Choosing bases extends the construction to all finite-dimensional $V$; changes of basis give canonical comparison isomorphisms. Equivalently, the object is characterized by
+\[
+ \operatorname{Hom}_{\mathcal C}(V\otimes X,Y)
+ \simeq\operatorname{Hom}_k\bigl(V,\operatorname{Hom}_{\mathcal C}(X,Y)\bigr).
+\]
+Here the tensor product is this vector-space action, not a monoidal structure on $\mathcal C$. There is also a natural isomorphism
+\[
+ \operatorname{Hom}_{\mathcal C}(Y,V\otimes X)
+ \simeq V\otimes_k\operatorname{Hom}_{\mathcal C}(Y,X).
+\]
+Write
+\[
+ \underline{\operatorname{Hom}}(V,X)=V^*\otimes X.
+\]
+A $k$-linear functor commutes with these constructions up to their natural identifications; in particular
+\[
+ \omega\bigl(\underline{\operatorname{Hom}}(V,X)\bigr)
+ \simeq\operatorname{Hom}_k(V,\omega X).
+\]
+
+\begin{definition}
+For a subspace $W\subseteq V$ and a subobject $Y\subseteq X$, the \emph{transporter} of $W$ into $Y$ is
+\[
+ (Y:W)=\ker\bigl(\underline{\operatorname{Hom}}(V,X)
+ \longrightarrow\underline{\operatorname{Hom}}(W,X/Y)\bigr).
+\]
+\end{definition}
+Exactness gives
+\[
+ \omega(Y:W)=\{f:V\to\omega X\mid f(W)\subseteq\omega Y\}.
+\]
+Thus linear conditions about preserving subspaces can be expressed by subobjects in $\mathcal C$.
+
+\subsection*{The object of endomorphisms preserving subobjects}
+Faithfulness implies $\omega X=0\Rightarrow X=0$. If $Y\subsetneq X$, exactness gives $\dim\omega Y<\dim\omega X$. Hence every object of $\mathcal C$ has finite length, and every descending chain of subobjects terminates. In particular, intersections of arbitrarily many subobjects of a fixed object are already finite intersections. Exactness of $\omega$ then preserves these intersections. It also reflects inclusions between subobjects of a common object: if $\omega P\subseteq\omega Q$, apply $\omega$ to $P\cap Q\subseteq P$ to conclude $P\subseteq Q$.
+
+Fix $X$, put $V=\omega X$ and $H_X=\underline{\operatorname{Hom}}(V,X)$. For each $n\geq1$, let
+\[
+ d_n:H_X\longrightarrow
+ \underline{\operatorname{Hom}}(V^{\oplus n},X^{\oplus n})
+\]
+be the diagonal map. Define
+\[
+ P_X=\bigcap_{n\geq1,\,Y\subseteq X^{\oplus n}}
+ d_n^{-1}(Y:\omega Y)\subseteq H_X.
+\]
+The intersection exists by the preceding finite-length argument. Its image under $\omega$ is
+\[
+ A_X:=\omega(P_X)
+ =\{a\in\operatorname{End}_k(V)\mid
+ a^{\oplus n}(\omega Y)\subseteq\omega Y
+ \text{ for all }Y\subseteq X^{\oplus n},\ n\geq1\}.
+\]
+This is a finite-dimensional unital subalgebra: identities preserve all the subspaces, and preservation is closed under linear combinations and composition.
+
+\begin{lemma}\label{lem:minimal-PX}
+The object $P_X$ is the smallest subobject $Q\subseteq H_X$ such that $\mathrm{id}_V\in\omega Q\subseteq\operatorname{End}_k(V)$.
+\end{lemma}
+\begin{proof}
+The identity belongs to $A_X$, so $P_X$ is one such subobject. Conversely, suppose $Q\subseteq H_X$ and $\mathrm{id}_V\in\omega Q$. Choose a basis of $V^*$ to identify $H_X$ with $X^{\oplus d}$, $d=\dim V$. By the defining property of $A_X$, the diagonal action of every $a\in A_X$ preserves $\omega Q$. Under $\omega H_X=\operatorname{End}_k(V)$, this diagonal action is left composition, $q\mapsto a\circ q$. Applying it to $\mathrm{id}_V$ shows $a\in\omega Q$. Thus $\omega P_X\subseteq\omega Q$, and reflection of subobject inclusions gives $P_X\subseteq Q$.
+\end{proof}
+
+Let $\langle X\rangle_{\oplus}$ denote the full subcategory consisting of subquotients of finite direct sums of $X$. This notation is different from the tensor-generated category $\mathcal C_X$ used earlier. The category $\langle X\rangle_{\oplus}$ is abelian, and its inclusion in $\mathcal C$ is exact: kernels, cokernels and finite sums of such subquotients are again such subquotients.
+
+Each $a\in A_X$ acts diagonally on $\omega(X^{\oplus n})$, preserves every subobject, and hence acts on the image under $\omega$ of every subquotient. These actions are independent of presentations and natural in $Y\in\langle X\rangle_{\oplus}$. To check this, take the graph of a morphism between two subquotients, pull it back to their presenting subobjects, and regard that pullback as a subobject of a direct sum of copies of $X$. Its preservation is exactly the assertion that the morphism intertwines the two actions. In particular, apply this to an identity morphism to compare presentations.
+
+We have therefore lifted $\omega$ to an exact faithful functor
+\[
+ \widetilde\omega_X:\langle X\rangle_{\oplus}
+ \longrightarrow A_X\text{-}\mathrm{mod}_{\mathrm{fd}}.
+\]
+The next lecture proves that it is an equivalence and that
+$A_X=\operatorname{End}(\omega|_{\langle X\rangle_{\oplus}})$. The construction here follows the abelian part of \cite[Chapter X, Section 3]{milneAGS}, with the transporter and minimal-subobject arguments made explicit.

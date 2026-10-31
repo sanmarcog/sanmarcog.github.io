@@ -1,0 +1,76 @@
+\section{Lecture 7 (January 29, 2025, est.): Supergroups and categorical trace}\label{lec7}
+\noindent\textit{Scribe: Wolfgang Allred}
+
+
+A symmetric tensor category is a locally finite $k$-linear abelian category with a rigid symmetric monoidal structure, bilinear tensor product and $\operatorname{End}(\mathbb{1})=k$. Examples include finite-dimensional vector spaces and finite-dimensional representations of an affine group scheme. We now explain the analogous super examples. In the discussion of supergroups in this lecture, assume $\operatorname{char}k\ne2$.
+
+\subsection*{Affine supergroups}
+A \emph{superalgebra} is a $\mathbb Z/2\mathbb Z$-graded algebra $A=A_0\oplus A_1$ with $A_iA_j\subseteq A_{i+j}$. It is \emph{supercommutative} when
+\[
+ ab=(-1)^{|a||b|}ba
+\]
+for homogeneous elements. In particular, odd elements have square zero. Morphisms preserve the grading. The tensor product of superalgebras has multiplication
+\[
+ (a\otimes b)(a'\otimes b')=(-1)^{|b||a'|}aa'\otimes bb'.
+\]
+These are precisely the commutative algebra objects in the symmetric category of all supervector spaces. Although representations will be finite dimensional, the algebras used as coordinate algebras and test algebras need not be.
+
+\begin{definition}
+An \emph{affine supergroup scheme} is a group-valued functor on commutative superalgebras whose underlying set-valued functor is represented by a commutative superalgebra $\mathcal O(G)$. Equivalently, $\mathcal O(G)$ is a commutative Hopf algebra in supervector spaces, with all structure maps even and tensor products using the sign rule above.
+\end{definition}
+As for ordinary affine groups, Yoneda gives a contravariant equivalence between affine supergroups and commutative Hopf superalgebras.
+
+A finite-dimensional representation of $G$ can be described as a supervector space $V$ with an even coaction
+\[
+ \rho_V:V\longrightarrow V\otimes\mathcal O(G)
+\]
+satisfying the counit and coassociativity identities. Equivalently, it is a natural action of $G(R)$ on $V\otimes R$ by even $R$-linear automorphisms for every commutative superalgebra $R$. The correspondence is obtained by evaluating the universal point, exactly as in the ordinary case. Kernels and cokernels are graded kernels and cokernels, the tensor product uses the Hopf multiplication with its signs, and dual representations use the antipode. Thus the category $\operatorname{Rep}_{\mathrm{sVec}}(G)$, with even intertwiners, is a symmetric tensor category.
+
+\begin{definition}
+Suppose that $z\in G(k)$ satisfies $z^2=1$ and its conjugation action on $G$ is the parity automorphism. Define $\operatorname{Rep}(G,z)$ to be the full subcategory of $\operatorname{Rep}_{\mathrm{sVec}}(G)$ consisting of representations on which $z$ acts by parity:
+\[
+ z|_{V_0}=\mathrm{id}_{V_0},\qquad z|_{V_1}=-\mathrm{id}_{V_1}.
+\]
+\end{definition}
+This subcategory is closed under finite sums, subquotients, tensor products and duals, and contains the unit; hence it is a symmetric tensor category. Notice that $z$ is central on the even subgroup, but need not be central in the whole supergroup: its conjugation acts by $-1$ on odd coordinates.
+
+There are two useful special cases.
+\begin{enumerate}
+\item If $G$ is an ordinary affine group scheme, then $\operatorname{Rep}(G,1)$ consists of purely even representations and is the usual category $\operatorname{Rep}_k(G)$.
+\item For any affine supergroup $G$, let $\widetilde G=G\rtimes\mathbb Z/2\mathbb Z$, where the nontrivial element $z$ acts on $G$ by parity. Every superrepresentation of $G$ extends uniquely to a representation of $\widetilde G$ in which $z$ acts by parity. Restriction therefore gives
+\[
+ \operatorname{Rep}(\widetilde G,z)\simeq\operatorname{Rep}_{\mathrm{sVec}}(G).
+\]
+\end{enumerate}
+The parity condition and this construction are discussed in \cite[Section 9.11]{EGNO}.
+
+\subsection*{Trace and dimension}
+\begin{definition}
+For an endomorphism $f:X\to X$ of a dualizable object in a symmetric monoidal category, define
+\[
+\begin{split}
+\operatorname{Tr}(f):\mathbb{1}
+ &\xrightarrow{\operatorname{coev}_X}X\otimes X^*
+ \xrightarrow{f\otimes\mathrm{id}}X\otimes X^*\\
+ &\xrightarrow{c_{X,X^*}}X^*\otimes X
+ \xrightarrow{\operatorname{ev}_X}\mathbb{1}.
+\end{split}
+\]
+The \emph{categorical dimension} is $\dim X=\operatorname{Tr}(\mathrm{id}_X)$. These are elements of $\operatorname{End}(\mathbb{1})$, identified with $k$ in a tensor category.
+\end{definition}
+
+In vector spaces, choose a basis $v_i$ with dual basis $v_i^*$. The composite sends
+\[
+ 1\longmapsto\sum_i v_i\otimes v_i^*
+ \longmapsto\sum_i f(v_i)\otimes v_i^*
+ \longmapsto\sum_i v_i^*\otimes f(v_i)
+ \longmapsto\sum_i v_i^*(f(v_i)),
+\]
+so it is the ordinary trace. In supervector spaces, use a homogeneous basis. The flip of an odd vector past its odd dual contributes a minus sign. For an even endomorphism $f$,
+\[
+ \operatorname{Tr}(f)=\operatorname{tr}(f|_{V_0})-\operatorname{tr}(f|_{V_1}),
+ \qquad \dim V=\dim_kV_0-\dim_kV_1.
+\]
+The difference on the right is interpreted in the field $k$.
+
+For the odd line $\Pi=k^{0|1}$ we have $\Pi\otimes\Pi\simeq\mathbb{1}$, but $\dim\Pi=-1$. In an ordinary representation category, an object whose tensor square is the unit has one-dimensional underlying space, hence categorical dimension $1$. The next lecture explains why a symmetric tensor functor preserves these quantities and therefore why $\mathrm{sVec}$ cannot be an ordinary representation category when $\operatorname{char}k\ne2$.

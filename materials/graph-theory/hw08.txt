@@ -1,0 +1,105 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=1cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=0.5em}
+\usepackage{xcolor}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usepackage[colorlinks = true,
+linkcolor = forestgreen,
+urlcolor  = forestgreen,
+citecolor = forestgreen,
+anchorcolor = forestgreen]{hyperref}
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{tikz}
+\usepackage{mathabx}
+\usepackage{lastpage}
+
+
+
+
+
+
+%% header, footer definitions
+\def\course{MATH 314}
+\def\courselink{https://www.gsanmarco.com/graph-theory}
+\def\assignment{HW \#8}
+\def\assignlink{hw06.tex}
+\def\due{Due on March 28}
+
+
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\course}
+\fancyhead[C]{\assignment} 
+\fancyhead[R]{\due} 
+%\renewcommand{\footrulewidth}{0.4pt}
+%\fancyfoot{}
+%\fancyfoot[R]{\fontsize{8}{10} \selectfont  Page \thepage~of \pageref{LastPage}}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont  Source file available at \href{\courselink}{\textbf{\courselink}}}
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{Solution}{Solution}
+% custom
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+
+\DeclareMathOperator{\diam}{diam}
+
+
+
+\begin{document}
+\noindent  Unless explicitly requested by a problem, do not include sketches as part of your proof. You are free to use the result from any problem on this (or previous) assignment as a part of your solution to a different problem even if you have not solved the former problem.
+\vskip10pt
+
+\begin{problem}[2 pts]
+\begin{enumerate}[label=(\alph*), leftmargin=*]
+	\item For which $n$ is the complete graph $K_n$ Eulerian? When does $K_n$ contain an Eulerian trail?
+	\item For which $s$, $t$ is the complete bipartite graph $K_{s,t}$ Eulerian? When does $K_{s,t}$ contain an Eulerian trail?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[2 pts]
+Let $G$ be a connected regular graph that is not Eulerian. Show that, if $\overline G$ is connected, then $\overline G$  is Eulerian. Deduce that the complement of the Petersen graph is Eulerian.
+\end{problem}
+
+\begin{problem}[2pts]
+Use Eulerian circuits to show that if $G$ is a connected even-regular graph (i.e. all vertices have even degree), then $G$ has no bridges.
+\end{problem}
+
+\begin{problem}[2 + 2 pts]
+	Let $G$ and $H$ be any graphs. Recall that the \emph{Cartesian product} of $G$ and $H$ is the graph $G\times H$ which has vertex set $V(G)\times V(H)$ and $\{(u_1,v_1),(u_2,v_2)\}\in E(G\times H)$ if and only if either $u_1=u_2$ and $v_1v_2\in E(H)$ or $u_1u_2\in E(G)$ and $v_1=v_2$.
+	
+	
+	\begin{enumerate}[label=(\alph*), leftmargin=*]
+		\item Prove that $G\times H$ is connected if and only if both $G$ and $H$ are connected.
+		\item Prove that $G\times H$ is Eulerian if and only if both $G$ and $H$ are connected and also:
+		\begin{enumerate}[label=$\bullet$]
+			\item Both $G$ and $H$ are even-regular, or
+			\item Both $G$ and $H$ are odd-regular.
+		\end{enumerate}
+	\end{enumerate}
+\end{problem}
+\end{document}
+
+
+
+

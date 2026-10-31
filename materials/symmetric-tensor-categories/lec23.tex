@@ -1,0 +1,228 @@
+\section{Lecture 23 (March 10, 2025, est.): Beyond fusion categories}
+\label{lec23}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+This final lecture describes the extension of the Frobenius method to
+nonsemisimple categories, and the role of higher Verlinde categories.
+Throughout, $k$ is algebraically closed of characteristic $p>0$, and
+$\mathcal C$ is a symmetric tensor category with finite-dimensional
+Hom-spaces and finite-length objects. Recall that \emph{moderate growth}
+means: for every $X$ there is a real constant $d_X$ such that
+$\ell(X^{\otimes n})\leq d_X^n$ for every $n\geq1$.
+The results and conjectures below retain the distinction made in the
+course between proved structure theorems and the proposed higher theory.
+
+\subsection{Frobenius functors in the general case}
+For $G\leq S_n$, the symmetry gives a functor
+\[
+ P_G:\mathcal C\longrightarrow\Rep(G,\mathcal C),\qquad
+ X\longmapsto X^{\otimes n}
+\]
+with the restricted permutation action. There is a general construction
+\cite[Section 3.1]{CEOFrobenius}
+\begin{equation}\label{lec23-general-frobenius}
+ \mathrm{Fr}_G:\mathcal C\longrightarrow
+ \mathcal C\boxtimes\overline{\Rep_k(G)}.
+\end{equation}
+Its second step applies semisimplification in the $G$-representation
+variable. When $\mathcal C$ is not semisimple, this needs care:
+$\Rep(G,\mathcal C)$ is not generally
+$\mathcal C\boxtimes\Rep_k(G)$, and quotienting \emph{all} negligible
+morphisms of $\Rep(G,\mathcal C)$ would also lose information from
+$\mathcal C$.
+
+One precise construction presents $\mathcal C$ as comodules of a
+cotriangular copseudo-Hopf algebra $H$. Such a presentation records the
+abelian category by a coalgebra and its tensor structure by compatible
+bicomodule data. Then
+\[
+ \Rep(G,\mathcal C)\simeq
+ H\text{-}\mathrm{Comod}(\Rep_k(G)).
+\]
+Apply $\Rep_k(G)\to\overline{\Rep_k(G)}$ to the representation-variable
+data and the coactions. The result is
+$H\text{-}\mathrm{Comod}(\overline{\Rep_k(G)})
+\simeq\mathcal C\boxtimes\overline{\Rep_k(G)}$.
+This construction is independent of the chosen presentation, and is
+symmetric monoidal; these facts are part of the cited construction.
+
+The functor \eqref{lec23-general-frobenius} is additive precisely when a
+Sylow $p$-subgroup of $G$ acts transitively on $\{1,\ldots,n\}$.
+In particular, additivity requires $n=p^j$. In this case it is
+$p^j$-semilinear and becomes $k$-linear after replacing the first factor
+of its target by $\mathcal C^{(j)}$, with scalar action
+$\lambda\cdot f=\lambda^{p^j}f$.
+
+The principal examples are
+\[
+ \mathrm{Fr}=\mathrm{Fr}_{C_p}:
+ \mathcal C\longrightarrow\mathcal C^{(1)}\boxtimes\mathsf{Ver}_p
+\]
+and the \emph{enhanced Frobenius functor}
+\[
+ \mathrm{Fr}^{\mathrm{en}}=\mathrm{Fr}_{S_p}:
+ \mathcal C\longrightarrow
+ \mathcal C^{(1)}\boxtimes\overline{\Rep_k(S_p)}.
+\]
+Neither is assumed exact in a general category.
+
+\subsection{Invariants, coinvariants, and the functor $\mathrm{Fr}_+$}
+For $m\geq1$, write
+\[
+ \Gamma^mX=(X^{\otimes m})^{S_m},\qquad
+ S^mX=(X^{\otimes m})_{S_m}.
+\]
+These are respectively the largest subobject on which all permutations
+act trivially and the largest quotient with trivial permutation action.
+The inclusion followed by the quotient gives a canonical map
+$\Gamma^mX\to S^mX$.
+
+\begin{definition}
+For $j\geq1$, define
+\[
+ \mathrm{Fr}^{(j)}_+(X)=
+ \operatorname{im}\bigl(\Gamma^{p^j}X\longrightarrow S^{p^j}X\bigr),
+ \qquad \mathrm{Fr}_+=\mathrm{Fr}^{(1)}_+.
+\]
+\end{definition}
+These are $p^j$-semilinear functors. The functor $\mathrm{Fr}_+$ is a
+direct summand of $\mathrm{Fr}^{\mathrm{en}}$, extracted by the unit
+multiplicity in $\overline{\Rep_k(S_p)}$. It has a canonical lax monoidal
+structure; its structural maps are not asserted to be isomorphisms.
+
+\begin{example}
+For an ordinary vector space $V$ with basis $v_1,\ldots,v_d$, the image of
+$\Gamma^{p^j}V\to S^{p^j}V$ has basis $v_1^{p^j},\ldots,v_d^{p^j}$.
+Indeed, the orbit sum of a mixed tensor maps to its orbit size times the
+corresponding monomial. The multinomial coefficient for a nonconstant
+word of length $p^j$ is divisible by $p$, whereas constant words have
+orbit size one. Thus this functor recovers the usual Frobenius twist of
+a vector space, and similarly the Frobenius twist of a representation.
+\end{example}
+
+\begin{theorem}[Coulembier--Etingof--Ostrik]
+\label{lec23-frobenius-exact}
+The following conditions are equivalent:
+\begin{enumerate}
+ \item $\mathrm{Fr}$ is exact;
+ \item $\mathrm{Fr}^{\mathrm{en}}$ is exact;
+ \item $\mathrm{Fr}_+$ is exact.
+\end{enumerate}
+A category satisfying them is called \emph{Frobenius exact}.
+\end{theorem}
+See \cite[Proposition 3.4]{CEOFrobenius}. The equivalence is a theorem,
+not a formal consequence of additivity. In particular,
+semisimple categories are Frobenius exact, but nonsemisimple examples
+need not be.
+
+\begin{theorem}[The Verlinde fiber-functor criterion]
+\label{lec23-ceo-fiber}
+The category $\mathcal C$ is Frobenius exact and of moderate growth if
+and only if it admits an exact $k$-linear symmetric monoidal functor
+$\mathcal C\to\mathsf{Ver}_p$.
+\end{theorem}
+This is the general structure theorem of
+\cite[Theorem 7.13]{CEOFrobenius}. The forward implication is a deep
+extension of the fusion-category argument. For the reverse implication,
+exact faithful functors preserve a strict composition series and hence
+cannot decrease length. Tensor powers in the fusion category
+$\mathsf{Ver}_p$ have exponentially bounded length, proving moderate
+growth. Naturality of the Frobenius construction and exact faithfulness
+of the fiber functor then detect exactness of $\mathrm{Fr}$, since the
+target is semisimple.
+
+\begin{lemma}[Iteration]\label{lec23-iteration}
+If $\mathcal C$ is Frobenius exact, then
+\[
+ \mathrm{Fr}^{(j)}_+\simeq(\mathrm{Fr}_+)^{\circ j}
+ \qquad(j\geq1).
+\]
+\end{lemma}
+This is \cite[Lemma 5.1]{CEOFrobenius}; the equality compares the same
+semilinearity on both sides. Its proof uses a faithful exact symmetric
+functor that splits all short exact sequences, and the comparison of
+invariants and coinvariants for iterated permutation groups. Without
+Frobenius exactness the assertion can fail. Thus the definition using
+$S_{p^j}$-invariants must not be replaced by iteration without this
+hypothesis.
+
+\subsection{Higher Verlinde categories and incompressibility}
+\begin{definition}
+A symmetric tensor category $\mathcal D$ is \emph{incompressible} if
+every tensor functor from $\mathcal D$ to another symmetric tensor
+category is an embedding of a tensor subcategory: it is fully faithful
+and its image is closed under subobjects and quotients.
+\end{definition}
+Besides $\Vect$, $\SVec$ for $p>2$, and $\mathsf{Ver}_p$, there are
+finite symmetric tensor categories $\mathsf{Ver}_{p^n}$ and
+$\mathsf{Ver}_{p^n}^+$ for $n\geq1$, constructed from quotients of the
+category of tilting modules for $\SL_2$ and their abelian envelopes
+\cite{BEOHigher}. There are tensor embeddings
+\[
+ \mathsf{Ver}_p\subseteq\mathsf{Ver}_{p^2}
+ \subseteq\mathsf{Ver}_{p^3}\subseteq\cdots.
+\]
+These categories and their indicated subcategories are incompressible.
+For $n>1$, $\mathsf{Ver}_{p^n}$ is not Frobenius exact. In particular,
+moderate growth alone does not imply the existence of a fiber functor
+to $\mathsf{Ver}_p$.
+
+\begin{theorem}[Coulembier--Etingof--Ostrik]
+Every symmetric tensor category of moderate growth admits a tensor
+functor to an incompressible symmetric tensor category.
+\end{theorem}
+This existence theorem is proved in \cite{CEOIncompressible}. It leaves
+the classification of possible incompressible targets as a separate
+problem. The conjecture discussed in the course is that every category
+of moderate growth fibers over
+$\mathsf{Ver}_{p^\infty}=\bigcup_n\mathsf{Ver}_{p^n}$; the known higher
+Verlinde categories and their tensor subcategories would then supply
+all the incompressible targets in this class. This is stated as a
+conjecture, not used as a theorem.
+
+\subsection{A proposed higher Frobenius construction}
+We conclude with the construction of Coulembier--Flake
+\cite{CFHigher}. Fix $n\geq1$ and $E=(C_p)^n$. Choose a faithful
+two-dimensional representation $V$ of $E$, equivalently an embedding
+$E\hookrightarrow\SL_2(k)$. For example, choose
+$\mathbb F_p$-linearly independent elements $a_1,\ldots,a_n\in k$ and
+send the $i$th generator to
+$\left(\begin{smallmatrix}1&a_i\\0&1\end{smallmatrix}\right)$.
+Let $\mathcal D$ be the full additive idempotent-complete monoidal
+subcategory generated by $V$ in $\Rep_k(E)$.
+
+There is a tensor ideal of morphisms $\mathcal K$ in $\mathcal D$ such
+that $\mathsf{Ver}_{p^n}$ is the monoidal abelian envelope of
+$\mathcal D/\mathcal K$. This is an actual construction theorem.
+For $n=1$ it recovers the quotient of $\Rep_k(C_p)$ by negligible maps.
+Together with the regular permutation embedding $E\hookrightarrow S_{p^n}$,
+it leads to candidate functors
+\[
+ \Phi^V_{\mathcal C}:\mathcal C\longrightarrow
+ \mathcal C^{(n)}\boxtimes\mathsf{Ver}_{p^n},
+\]
+based on the $E$-action on $X^{\otimes p^n}$. The exponent in the
+Frobenius scalar twist is $p^n$.
+
+The category $\mathcal D$ has only finitely many indecomposables and has
+a smallest nonzero \emph{thick tensor ideal of objects} $\mathcal J$.
+Here ``thick'' means closed under finite direct sums and direct summands;
+being a tensor ideal means closure under tensoring with every object of
+the ambient category. This ideal of objects is distinct from the ideal
+of morphisms $\mathcal K$ above.
+
+The two conjectural steps discussed in the handwritten notes are:
+\begin{enumerate}
+ \item The candidate functors $\Phi^V_{\mathcal C}$ admit compatible
+ symmetric monoidal structures and intertwine tensor functors in
+ $\mathcal C$, giving higher analogues of the ordinary Frobenius functor.
+ \item The full subcategory $\mathcal J\subseteq\mathcal D\subseteq
+ \Rep_k(E)$ remains a thick tensor ideal in the entire category
+ $\Rep_k(E)$, including closure under tensoring with modules outside
+ $\mathcal D$.
+\end{enumerate}
+Coulembier--Flake prove that the second statement implies the first.
+They establish special cases, but the general monoidality assertion is
+not a consequence merely of taking a tensor power. The longer-term aim
+is an exactness criterion for fibering over $\mathsf{Ver}_{p^n}$,
+parallel to Theorem~\ref{lec23-ceo-fiber} when $n=1$.

@@ -1,0 +1,94 @@
+\section{Lecture 8 (January 31, 2025, est.): Tensor functors and moderate growth}\label{lec8}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+
+\subsection*{The parity element}
+We first make the condition on the element $z$ from Lecture~\ref{lec7} explicit. Put $A=\mathcal O(G)$ and view $z\in G(k)$ as an even algebra homomorphism $z:A\to k$. The pullback of conjugation by $z$ is
+\[
+ a\longmapsto\sum z(a_{(1)})\,a_{(2)}\,z^{-1}(a_{(3)}).
+\]
+Here $z^{-1}=z\circ S$, and $z^2=1$ makes $z^{-1}=z$. The parity condition requires this expression to equal $a_0-a_1$ for $a=a_0+a_1$, $a_i\in A_i$. It does not require $z$ to be central in the whole supergroup.
+
+\subsection*{Monoidal and symmetric tensor functors}
+\begin{definition}
+A \emph{strong monoidal functor} $(F,F_0,F_2):\mathcal C\to\mathcal D$ consists of a functor, an isomorphism $F_0:\mathbb{1}_{\mathcal D}\to F(\mathbb{1}_{\mathcal C})$, and natural isomorphisms
+\[
+ F_{2,X,Y}:F(X)\otimes F(Y)\longrightarrow F(X\otimes Y).
+\]
+They satisfy the associativity identity
+\[
+\begin{split}
+ F(a_{X,Y,Z})F_{2,X\otimes Y,Z}(F_{2,X,Y}\otimes\mathrm{id})
+ ={}&F_{2,X,Y\otimes Z}(\mathrm{id}\otimes F_{2,Y,Z})\\
+ &\hspace{-10mm}\circ a_{F(X),F(Y),F(Z)},
+\end{split}
+\]
+and the two unit identities
+\[
+\begin{split}
+ F(l_X)F_{2,\mathbb{1},X}(F_0\otimes\mathrm{id})&=l_{F(X)},\\
+ F(r_X)F_{2,X,\mathbb{1}}(\mathrm{id}\otimes F_0)&=r_{F(X)}.
+\end{split}
+\]
+For braided categories, $F$ is \emph{braided} if
+\[
+ F(c^{\mathcal C}_{X,Y})F_{2,X,Y}
+ =F_{2,Y,X}c^{\mathcal D}_{F(X),F(Y)}.
+\]
+If both braidings are symmetric, we call it a symmetric monoidal functor.
+\end{definition}
+In these notes, a \emph{symmetric tensor functor} between symmetric tensor categories means a $k$-linear exact strong symmetric monoidal functor. Such a functor is faithful.
+
+\begin{proof}[Proof of faithfulness]
+If $X\ne0$, the evaluation $X^*\otimes X\to\mathbb{1}$ is nonzero by the triangle identity, and hence surjective because the unit is simple. Exactness and $F(\mathbb{1})\simeq\mathbb{1}$ imply $F(X)\ne0$. If $f$ is a nonzero morphism, its image is nonzero. Exactness gives $\operatorname{im}F(f)\simeq F(\operatorname{im}f)\ne0$, so $F(f)\ne0$.
+\end{proof}
+
+\begin{lemma}\label{lem:trace-functor}
+A symmetric tensor functor preserves categorical traces and dimensions.
+\end{lemma}
+\begin{proof}
+Applying $F$ to evaluation and coevaluation, and inserting $F_0,F_2$, makes $F(X^*)$ a dual of $F(X)$. The triangle identities follow by applying $F$ to those for $X$. Symmetry compatibility identifies the image of the braiding in the trace formula with the braiding of $F(X)$ and $F(X^*)$. Thus
+\[
+ \operatorname{Tr}(F(f))=F_0^{-1}F(\operatorname{Tr}(f))F_0.
+\]
+On the scalar endomorphisms of the unit this is the same scalar because $F$ is $k$-linear. Set $f=\mathrm{id}_X$ for the dimension statement.
+\end{proof}
+
+For $\operatorname{char}k\ne2$, there is no symmetric tensor functor from $\mathrm{sVec}$ to $\operatorname{Rep}_k(G)$ for an ordinary affine group scheme $G$. Indeed, the odd line $\Pi$ has tensor square $\mathbb{1}$ and categorical dimension $-1$. Its image would have one-dimensional underlying space, hence dimension $1$, contradicting Lemma~\ref{lem:trace-functor}. The tensor-square condition is essential here: in positive characteristic an arbitrary vector space can have dimension congruent to $-1$ in $k$.
+
+\subsection*{Moderate growth}
+Write $\ell(X)$ for the composition length of an object in a finite-length abelian category.
+\begin{definition}
+An object $X$ has \emph{moderate growth} if there is an integer $d_X\geq1$ such that
+\[
+ \ell(X^{\otimes n})\leq d_X^n\qquad(n\geq0).
+\]
+A tensor category has moderate growth if every object does.
+\end{definition}
+
+\begin{lemma}
+For an exact faithful functor $F:\mathcal C\to\mathcal D$ between finite-length abelian categories, $\ell(X)\leq\ell(F(X))$.
+\end{lemma}
+\begin{proof}
+Apply $F$ to a composition series of $X$. Exactness preserves its successive quotients, and faithfulness makes their images nonzero. Each image has length at least one; additivity of length gives the inequality.
+\end{proof}
+Consequently, moderate growth pulls back along tensor functors. In $\operatorname{Rep}(G,z)$ the ordinary total vector-space dimension, rather than superdimension, gives
+\[
+ \ell(X^{\otimes n})\leq(\dim_kX_0+\dim_kX_1)^n.
+\]
+
+Categories with finitely many simple isomorphism classes also have moderate growth. To see this, choose representatives $S_1,\ldots,S_r$. For fixed $X$ put
+\[
+ d_X=\max\{1,\ell(X\otimes S_1),\ldots,\ell(X\otimes S_r)\}.
+\]
+Tensor exactness and a composition series of $Y$ give $\ell(X\otimes Y)\leq d_X\ell(Y)$. Starting with $Y=\mathbb{1}$ proves the required bound by induction. In a finite tensor category one can alternatively use the Frobenius--Perron dimension: its positivity on simples gives $\ell(X^{\otimes n})\leq\operatorname{FPdim}(X)^n$.
+
+\begin{theorem}[Deligne]\label{thm:deligne-moderate}
+Let $k$ be algebraically closed of characteristic zero and let $\mathcal C$ be a symmetric tensor category. The following are equivalent:
+\begin{enumerate}
+\item $\mathcal C$ has moderate growth;
+\item there is a symmetric tensor functor $\mathcal C\to\mathrm{sVec}_k$;
+\item $\mathcal C\simeq\operatorname{Rep}(G,z)$ as a symmetric tensor category for an affine supergroup $G$ and an element $z$ with $z^2=1$ and $\operatorname{Ad}(z)$ equal to parity.
+\end{enumerate}
+\end{theorem}
+The implication from moderate growth to a super fiber functor is a substantial theorem, not proved here; see \cite[Theorems 9.11.4 and 9.11.9]{EGNO}. The length estimate above proves the converse. The reconstruction behind the remaining equivalence motivates our next lectures, starting with ordinary fiber functors to vector spaces.

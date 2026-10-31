@@ -1,0 +1,201 @@
+\section{Lecture 16 (February 21, 2025, est.): Negligible morphisms and semisimplification}
+\label{lec16}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+The previous lecture showed that an object on which every Schur functor
+is nonzero has tensor-power lengths at least $\sqrt{n!}$. This completes
+the growth argument we will use from the characteristic-zero theory.
+We now develop a construction that is particularly useful in positive
+characteristic. Throughout this lecture $k$ is algebraically closed.
+
+\subsection{Pseudotensor categories}
+
+\begin{definition}
+A \emph{symmetric pseudotensor category} over $k$ is an essentially
+small, additive, $k$-linear, rigid symmetric monoidal category
+$\mathcal C$ with finite-dimensional morphism spaces and
+$\End_{\mathcal C}(\1)=k$, in which every idempotent splits.
+The latter condition is also called \emph{Karoubian}: if
+$e\in\End(X)$ and $e^2=e$, then $X\cong\im(e)\oplus\im(1-e)$.
+We do not assume that $\mathcal C$ is abelian.
+\end{definition}
+
+Every additive category has an idempotent completion: its objects are
+pairs $(X,e)$ with $e^2=e$, and morphisms $(X,e)\to(Y,f)$ are maps
+$a:X\to Y$ with $a=fae$. This adds the missing images of idempotents.
+
+\begin{proposition}[Krull--Schmidt]
+Every object of $\mathcal C$ is a finite direct sum of indecomposable
+objects, uniquely up to permutation and isomorphism. The endomorphism
+algebra of an indecomposable object is a finite-dimensional local
+algebra with residue field $k$.
+\end{proposition}
+\begin{proof}
+An orthogonal decomposition of $\id_X$ into primitive idempotents in
+the finite-dimensional algebra $\End(X)$ gives the decomposition of
+$X$, because idempotents split. For a primitive idempotent $e$, the
+corner algebra $e\End(X)e$ is local. Its residue division algebra is
+finite-dimensional over the algebraically closed field $k$, hence is
+$k$. Uniqueness follows from the usual exchange argument for local
+endomorphism rings: if $\id_U$ is expressed as a sum of composites
+through the summands of another decomposition, at least one composite
+is invertible, identifying $U$ with one of those summands; cancel and
+continue.
+\end{proof}
+
+In particular, a noninvertible endomorphism of an indecomposable object
+lies in the radical and is nilpotent. Every endomorphism of such an
+object is of the form $\lambda\id+n$ with $\lambda\in k$ and $n$
+nilpotent.
+
+\subsection{Tensor ideals and quotient categories}
+
+\begin{definition}
+A \emph{tensor ideal} $\mathcal I$ is a family of linear subspaces
+$\mathcal I(X,Y)\subseteq\Hom_{\mathcal C}(X,Y)$ such that
+\begin{enumerate}
+ \item if $f\in\mathcal I(X,Y)$, $a:W\to X$, and $b:Y\to Z$, then
+       $bfa\in\mathcal I(W,Z)$;
+ \item if $f\in\mathcal I(X,Y)$ and $g:U\to V$, then
+       $f\otimes g\in\mathcal I(X\otimes U,Y\otimes V)$ and
+       $g\otimes f\in\mathcal I(U\otimes X,V\otimes Y)$.
+\end{enumerate}
+\end{definition}
+
+The quotient $\mathcal C/\mathcal I$ has the same objects and
+\[
+ \Hom_{\mathcal C/\mathcal I}(X,Y)
+ =\Hom_{\mathcal C}(X,Y)/\mathcal I(X,Y).
+\]
+The ideal conditions make composition and tensor product well defined.
+The associativity, symmetry, and duality maps descend, giving an
+additive rigid symmetric monoidal quotient and a quotient functor
+$Q:\mathcal C\to\mathcal C/\mathcal I$. Every additive symmetric
+monoidal functor annihilating $\mathcal I$ factors uniquely through
+$Q$. If an idempotent-complete target is required, one may then take
+the idempotent completion of the quotient. For the negligible ideal
+below, the quotient is already semisimple and idempotent complete under
+the nilpotent-trace hypothesis stated below.
+
+This is a quotient of morphism spaces, not a Serre quotient of an
+abelian category. In particular, even when both categories happen to
+be abelian, the quotient functor need not be exact.
+
+\subsection{The trace pairing}
+
+Recall that for $f:X\to X$, the symmetric categorical trace is
+\[
+ \Tr_X(f)=
+ \left(\1\xrightarrow{\coev_X}X\otimes X^*
+ \xrightarrow{f\otimes\id}X\otimes X^*
+ \xrightarrow{c_{X,X^*}}X^*\otimes X
+ \xrightarrow{\ev_X}\1\right)\in k.
+\]
+Set $\dim(X)=\Tr_X(\id_X)$. The trace is cyclic,
+$\Tr_X(gf)=\Tr_Y(fg)$ for $f:X\to Y$, $g:Y\to X$,
+and is additive on direct sums and multiplicative on tensor products.
+
+\begin{definition}
+A morphism $f:X\to Y$ is \emph{negligible} if
+\[
+ \Tr_X(gf)=0\qquad\text{for every }g:Y\to X.
+\]
+Write $\mathcal N(X,Y)$ for the subspace of negligible morphisms.
+An object is negligible if its identity morphism is negligible.
+\end{definition}
+
+\begin{proposition}\label{prop:lec16-negligible-ideal}
+The negligible morphisms form a tensor ideal.
+\end{proposition}
+\begin{proof}
+Linearity is immediate. If $a:W\to X$, $b:Y\to Z$, and $h:Z\to W$,
+then cyclicity gives
+$\Tr_W(hbfa)=\Tr_X(ahbf)=0$, so $bfa$ is negligible.
+For tensor products, let $f:X\to Y$ be negligible, $g:U\to V$, and
+$h:Y\otimes V\to X\otimes U$. Close the $U$-strand of
+$h(\id_Y\otimes g)$ using evaluation, coevaluation and symmetry;
+this defines a partial trace $h':Y\to X$. The trace identities give
+\[
+ \Tr_{X\otimes U}\bigl(h(f\otimes g)\bigr)=\Tr_X(h'f)=0.
+\]
+Thus $f\otimes g$ is negligible. Symmetry gives the assertion for
+$g\otimes f$ as well.
+\end{proof}
+
+\subsection{Benson's lemma}
+
+From now on assume additionally that
+\begin{equation}\label{eq:lec16-nilpotent-trace}
+ \Tr_X(n)=0\quad\text{for every nilpotent }n\in\End_{\mathcal C}(X).
+\end{equation}
+This hypothesis is important for a pseudotensor category. It holds
+for the representation categories used below, where the categorical
+trace is the ordinary trace. We use the following criterion, often
+called Benson's lemma; see also \cite[\S2]{EOSemisimplification}.
+
+\begin{lemma}\label{lem:lec16-benson}
+Let $X,Y$ be nonzero indecomposable objects. A map $f:X\to Y$ is
+negligible if and only if $\dim(Y)=0$ or $f$ is not an isomorphism.
+For decompositions $X=\bigoplus_iX_i$ and $Y=\bigoplus_jY_j$ into
+indecomposables, a map $f=(f_{ji})$ is negligible if and only if each
+component $f_{ji}:X_i\to Y_j$ is negligible.
+\end{lemma}
+\begin{proof}
+Suppose $f:X\to Y$ is not invertible. For any $g:Y\to X$, the
+endomorphism $fg$ cannot be invertible: otherwise, with
+$h=(fg)^{-1}$, the map $s=gh:Y\to X$ satisfies $fs=\id_Y$.
+The nonzero idempotent $sf$ splits $X$ as $Y\oplus Z$. Since $X$ is
+indecomposable, $Z=0$, which would make $f$ invertible.
+Thus $fg$ is a nonunit of the local algebra $\End(Y)$, hence is
+nilpotent. By \eqref{eq:lec16-nilpotent-trace}, $\Tr_Y(fg)=0$.
+
+If $f$ is invertible and $\dim(Y)\ne0$, taking $g=f^{-1}$ proves
+that $f$ is not negligible. If $\dim(Y)=0$, write
+$fg=\lambda\id_Y+n$ with $n$ nilpotent. Then
+$\Tr_Y(fg)=\lambda\dim(Y)+\Tr_Y(n)=0$, so $f$ is negligible.
+
+For the last assertion, if all components are negligible, then for
+$g=(g_{ij}):Y\to X$,
+\[
+ \Tr_Y(fg)=\sum_{i,j}\Tr_{Y_j}(f_{ji}g_{ij})=0.
+\]
+Conversely, test against matrices $g$ with just one nonzero component.
+This isolates each trace pairing and proves that every $f_{ji}$ is
+negligible.
+\end{proof}
+
+\begin{theorem}\label{thm:lec16-semisimplification}
+The quotient $\overline{\mathcal C}=\mathcal C/\mathcal N$ is a
+semisimple symmetric tensor category. Its simple objects are the images
+of the indecomposable objects of $\mathcal C$ of nonzero categorical
+dimension, one for each isomorphism class. An object becomes zero if
+and only if every indecomposable summand has dimension zero.
+\end{theorem}
+\begin{proof}
+For nonisomorphic indecomposables $X,Y$, every map $X\to Y$ is
+negligible. If $\dim(X)=0$, the identity of $X$ is negligible, so
+$Q(X)=0$. Otherwise Lemma~\ref{lem:lec16-benson} identifies the
+negligible endomorphisms of $X$ with the radical of $\End(X)$, and
+\[
+ \End_{\overline{\mathcal C}}(Q(X))
+       =\End_{\mathcal C}(X)/\operatorname{rad}\End_{\mathcal C}(X)
+       \cong k.
+\]
+Every object is a finite direct sum of these images. Hence the quotient
+is equivalent, as an additive category, to the category of finite-support
+families of finite-dimensional vector spaces indexed by the surviving
+indecomposables. This category is abelian, semisimple and idempotent
+complete. The quotient retains rigidity and symmetry, and the unit
+survives because $\dim(\1)=1$.
+\end{proof}
+
+\begin{definition}
+The category $\overline{\mathcal C}$ is the
+\emph{semisimplification} of $\mathcal C$, and $Q$ is its
+semisimplification functor.
+\end{definition}
+
+An object of total categorical dimension zero need not become zero:
+its nonzero-dimensional indecomposable summands may have dimensions
+whose sum is zero in $k$. The criterion in the theorem is a condition
+on every indecomposable summand, not only on their sum.

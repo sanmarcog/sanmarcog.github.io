@@ -1,0 +1,178 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=1cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=0.5em}
+\usepackage{xcolor}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usepackage[colorlinks = true,
+linkcolor = forestgreen,
+urlcolor  = forestgreen,
+citecolor = forestgreen,
+anchorcolor = forestgreen]{hyperref}
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{tikz}
+\usepackage{mathabx}
+%\usepackage{lastpage}
+
+
+
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{shapes.geometric,shapes.multipart,arrows,calc}
+
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}			
+\tikzset{
+	edge/.style = {black, ultra thick, outer sep=2pt},
+	vertex/.style = {draw=black, very thick, fill=white, circle, minimum width=8pt, inner sep=2pt, outer sep=1pt},
+	arc/.style = {black, ultra thick, outer sep=2pt, decoration={markings, mark=at position #1 with {\arrow[scale=1.5]{latex}}}, postaction=decorate},
+	arc/.default = 0.58
+}
+
+
+%% header, footer definitions
+\def\course{MATH 314}
+\def\courselink{https://www.gsanmarco.com/graph-theory}
+\def\assignment{HW \#5}
+\def\assignlink{hw05.tex}
+\def\due{Due on Feb 21}
+
+
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\course}
+\fancyhead[C]{\assignment} 
+\fancyhead[R]{\due} 
+%\renewcommand{\footrulewidth}{0.4pt}
+%\fancyfoot{}
+%\fancyfoot[R]{\fontsize{8}{10} \selectfont  Page \thepage~of \pageref{LastPage}}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont  Source file available at \href{\courselink}{\textbf{\courselink}}}
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{Solution}{Solution}
+% custom
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+\newcommand*{\eps}{\varepsilon}            % prettier epsilon
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\F}{\mathbb{F}}               % field
+\newcommand*{\family}{\mathcal{F}}         % family
+\newcommand*{\GL}{\mathbf{GL}}             % general linear group
+\newcommand*{\what}[1]{\widehat{#1}}       % wider hat
+\newcommand*{\wbar}[1]{\overline{#1}}      % wider bar
+\newcommand*{\mcal}[1]{\mathcal{#1}}       % mathcal
+\newcommand*{\mbf}[1]{\mathbf{#1}}         % mathbf
+\newcommand*{\mbb}[1]{\mathbb{#1}}         % mathbb
+
+% operators
+\let\Pr\relax\DeclareMathOperator*{\Pr}{\mathbf{Pr}}       % probability
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+
+
+
+\begin{document}
+\noindent  Unless explicitly requested by a problem, do not include sketches as part of your proof. You are free to use the result from any problem on this (or previous) assignment as a part of your solution to a different problem even if you have not solved the former problem.
+\vskip10pt
+
+\begin{problem}[2 pts]
+	Fix an integer $n\geq 2$.
+	Prove that a sequence of integers $d_1,\dots,d_n$ is the degree sequence of some tree if and only if $d_i\geq 1$ for all $i\in\{1, \dots, n\}$ and $\displaystyle \sum_{i=1}^n d_i=2n-2$.
+\end{problem}
+
+\begin{problem}[2 pts] This problem gives an alternative proof for the existence of spanning trees.
+	
+Let $G$ be a connected graph. 
+Consider the family $\mathcal F$ of all spanning subgraphs of $G$ that contain no cycle. Show that $\mathcal F$ is non empty and that an element of $\mathcal F$ with \textbf{maximum} number of edges is a spanning tree of $G$.
+\end{problem}
+
+\begin{problem}[2 pts]
+Let $G$ be a connected graph and let $S$ be any subset of edges of $G$. Show that  $G$ has a connected, spanning subgraph $H$ such that $S\subseteq E(H)$ and if $C$ is a cycle in $H$, then $E(C) \subseteq S$.
+\end{problem}
+
+\begin{problem}[2 pts]
+	Let $G$ be a connected graph and let $w\colon E(G)\to\mathbb R^{>0}$ be a weight function.
+	Show that if all weights are distinct (that is $w(e)\neq w(s)$ for all distinct $e,s\in E(G)$), then $G$ has a \emph{unique} minimum spanning tree.
+\end{problem}
+
+\begin{problem}[1+ 1 pts]
+	Consider the following weighted graph 
+	\begin{center}
+	\begin{tikzpicture}[scale=1]
+		\useasboundingbox (-4.5,-2) rectangle (2.5,2);
+		\begin{pgfonlayer}{foreground}
+			\node[vertex] (a) at (-4,0) {};
+			\node[vertex] (b) at (-2,2) {};
+			\node[vertex] (c) at (-2,-2) {};
+			\node[vertex] (d) at (0,0) {};
+			\node[vertex] (e) at (2,2) {};
+			\node[vertex] (f) at (2,-2) {};
+			\node[left,xshift=-3pt] at (a) {\large $a$};
+			\node[right,xshift=3pt] at (b) {\large $b$};
+			\node[right,xshift=3pt] at (c) {\large $c$};
+			\node[right,xshift=3pt] at (d) {\large $d$};
+			\node[right,xshift=3pt] at (e) {\large $e$};
+			\node[right,xshift=3pt] at (f) {\large $f$};
+		\end{pgfonlayer}
+		\begin{pgfonlayer}{background}
+			\draw[edge] (a) -- (b) node[midway,left,yshift=2pt] {\large $1$};
+			\draw[edge] (a) -- (c) node[midway,left,yshift=-2pt] {\large $2$};
+			\draw[edge] (b) -- (c) node[midway,left,xshift=2pt] {\large $4$};
+			\draw[edge] (b) -- (d) node[midway,right,yshift=2pt] {\large $2$};
+			\draw[edge] (c) -- (d) node[midway,right,yshift=-2pt] {\large $3$};
+			\draw[edge] (d) -- (e) node[midway,left,yshift=2pt] {\large $4$};
+			\draw[edge] (d) -- (f) node[midway,left,yshift=-2pt] {\large $5$};
+			\draw[edge] (e) -- (f) node[midway,right,xshift=-2pt] {\large $1$};
+		\end{pgfonlayer}
+	\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\alph*), itemsep=-.5em]
+	\item Apply Kruskal's algorithm to find a minimum spanning tree of the graph. \\
+	\item Apply the Jarn\'{\i}k-Prim algorithm to find minimum spanning tree of the graph.
+\end{enumerate}
+For each case, include a series of pictures explaining how the minimum spanning tree is created.
+\end{problem}
+
+
+
+
+
+\end{document}
+
+
+
+

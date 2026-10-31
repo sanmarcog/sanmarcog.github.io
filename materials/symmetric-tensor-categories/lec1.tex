@@ -1,0 +1,95 @@
+\section{Lecture 1 (January 6, 2025): Introduction}\label{lec1}
+\noindent\textit{Scribe: Wolfgang Allred}
+
+
+\subsection*{Introduction to Affine Group Schemes}
+For the first few lectures we will follow \cite{Wat}. There are multiple ways to view affine group schemes, but in order to avoid topology (for the time being) we will look at affine group schemes from the "Functor of Points" perspective. Throughout the course, $k$ is an algebraically closed field unless otherwise stated.
+
+Fix equations $f_1,\ldots,f_l\in k[x_1,\ldots,x_n]$ and put
+$A=k[x_1,\ldots,x_n]/(f_1,\ldots,f_l)$. For each commutative unital
+$k$-algebra $R$, their solutions in $R^n$ correspond naturally to algebra maps
+$A\to R$. Thus they define the functor
+\[
+ R\longmapsto\Hom_{k\text{-}\mathsf{Alg}}(A,R).
+\]
+The equations retain more information than their set of $k$-valued solutions.
+For example, $x=0$ and $x^2=0$ have the same solutions in $k$, but different
+solutions in $k[\epsilon]/(\epsilon^2)$: the second equation also admits $x=\epsilon$.
+This is why we keep the coordinate algebra, including its nilpotents.
+
+\begin{definition}
+Let $\mathcal{C}$ be a locally small category. A functor $F: \mathcal{C} \to \mathsf{Set}$ is \textbf{representable} if there exists some $A \in \mathcal{C}$ and a natural isomorphism $F \cong \Hom_{\mathcal{C}}(A,-)$.
+
+An \textbf{affine scheme} is a representable functor $X: k\text{-}\sf Alg \to Set$. If $X \cong \Hom_{k\text{-}{\sf Alg}}(A,-)$ then we say that $A$ is the \textbf{coordinate algebra} of $X$ and denote $k[X] \coloneqq A$.
+\end{definition}
+
+\begin{example}
+\begin{enumerate}[1)]
+	\item Affine space $\mathbb{A}^n$ sends $R \mapsto R^n$, so $k[\mathbb{A}^n] = k[x_1,...,x_n]$.
+	\item The punctured line $\mathbb{G}_m$ sends $R \to R^*$ where $R^*$ is the set of multiplicative units of $R$. Here, $k[\mathbb{G}_m] = k[x,y]/(xy-1)$.
+\end{enumerate}
+\end{example}
+
+These definitions make sense due to Yoneda's lemma, which is more general than the version that we state below:
+\begin{theorem}[Affine-scheme form of Yoneda's lemma]
+There is an anti-equivalence between $k$-$\sf Alg$ and $\sf AffScheme$ where $A \mapsto \Hom_{k\text{-}{Alg}}(A,-)$. In particular, for affine schemes $X$ and $Y$, 
+\[
+	\Hom(X,Y) \cong \Hom_{k\text{-}{\sf Alg}}(k[Y],k[X])
+\] 
+\end{theorem}
+\begin{proof}
+A natural transformation $\Hom(A,-)\to\Hom(B,-)$ sends $\id_A$ to a
+map $u:B\to A$. Naturality forces its component at $R$ to send
+$f:A\to R$ to $f\circ u$. Conversely, composition with any such $u$
+defines a natural transformation. This proves full faithfulness; essential
+surjectivity is the definition of an affine scheme.
+\end{proof}
+
+
+\begin{definition}
+An \textbf{affine group scheme} over $k$ is a functor $G: k\text{-}{\sf Alg} \to {\sf Group}$ whose underlying set-valued functor is representable.
+\end{definition}
+
+\begin{example}
+\begin{enumerate}[1)]
+	\item $\mathbb{G}_a$ sends $R \mapsto R^+$ where $R^+$ is the additive group of the underlying ring $R$. Then $k[\mathbb{G}_a] = k[x]$.
+	\item $\mathbb{G}_m$ as above.
+	\item $\GL_n$ sends $R \mapsto \GL_n(R)$, the group of invertible $n \times n$ matrices over $R$. Then $k[\GL_n] = k[x_{ij},\tfrac{1}{\det(x_{ij})}\;|\; 1 \leq i,j \leq n]$.
+	\item $\SL_n$ sends $R \mapsto \SL_n(R)$ where $\SL_n(R)$ is the group of invertible $n \times n $ matrices with determinant 1 over $R$. Its coordinate algebra is
+$k[\SL_n]=k[x_{ij}]/(\det(x_{ij})-1)$.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+A \textbf{Hopf algebra} over $k$ is a vector space $H$ with maps
+\[
+ m:H\otimes H\to H,\quad u:k\to H,\quad
+ \Delta:H\to H\otimes H,\quad \epsilon:H\to k,\quad S:H\to H
+\]
+satisfying the following axioms.
+\begin{enumerate}
+\item $(H,m,u)$ is an associative unital algebra:
+\[
+ m(m\otimes\id)=m(\id\otimes m),\qquad
+ m(u\otimes\id)=\id=m(\id\otimes u).
+\]
+\item $(H,\Delta,\epsilon)$ is a coalgebra:
+\[
+ (\Delta\otimes\id)\Delta=(\id\otimes\Delta)\Delta,\qquad
+ (\epsilon\otimes\id)\Delta=\id=(\id\otimes\epsilon)\Delta.
+\]
+Here the usual identifications with $k\otimes H$ and $H\otimes k$ are understood.
+\item The maps $\Delta$ and $\epsilon$ are unital algebra homomorphisms,
+where $H\otimes H$ has componentwise multiplication.
+\item The \textbf{antipode} satisfies
+\[
+ m(S\otimes\id)\Delta=u\epsilon=m(\id\otimes S)\Delta.
+\]
+\end{enumerate}
+The first three conditions define a \textbf{bialgebra}. The antipode is an
+anti-algebra map; for a commutative Hopf algebra it is an algebra map.
+\end{definition}
+
+In the next lecture, the natural multiplication, identity and inverse of an
+affine group scheme will produce $\Delta$, $\epsilon$ and $S$ on its coordinate
+algebra.

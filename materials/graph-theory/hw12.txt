@@ -1,0 +1,116 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=1cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=0.5em}
+\usepackage{xcolor}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usepackage[colorlinks = true,
+linkcolor = forestgreen,
+urlcolor  = forestgreen,
+citecolor = forestgreen,
+anchorcolor = forestgreen]{hyperref}
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{tikz}
+\usepackage{mathabx}
+\usepackage{lastpage}
+
+
+
+
+
+
+
+%% header, footer definitions
+\def\course{MATH 314}
+\def\courselink{https://www.gsanmarco.com/graph-theory}
+\def\assignment{HW \#12}
+\def\assignlink{hw12.tex}
+\def\due{Due on April 25}
+
+
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\course}
+\fancyhead[C]{\assignment} 
+\fancyhead[R]{\due} 
+%\renewcommand{\footrulewidth}{0.4pt}
+%\fancyfoot{}
+%\fancyfoot[R]{\fontsize{8}{10} \selectfont  Page \thepage~of \pageref{LastPage}}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont  Source file available at \href{\courselink}{\textbf{\courselink}}}
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{Solution}{Solution}
+% custom
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+
+\DeclareMathOperator{\diam}{diam}
+\newcommand*{\abs}[1]{\lvert #1\rvert}
+
+
+
+\begin{document}
+\noindent  Unless explicitly requested by a problem, do not include sketches as part of your proof. You are free to use the result from any problem on this (or previous) assignment as a part of your solution to a different problem even if you have not solved the former problem.
+\vskip10pt
+
+\begin{problem}[2pts] 
+Let $G$ be a regular graph.	Show that $\chi'(G)=\Delta(G)$ if and only if $G$ is $1$-factorable.
+\end{problem}
+
+
+\begin{problem}[2pts] \label{perfect}
+Let $G$ be a bipartite graph with parts $U,W$ where $\abs U=\abs W=k\geq 1$.
+Prove that if $\abs{E(G)}>k(k-1)$, then $G$ has a perfect matching.
+		
+Hint:  K\"onig's Theorem $\alpha'(G)=\beta(G)$.
+\end{problem}
+
+\begin{problem}[2pts]
+Let $G$ be a bipartite graph with parts $U,W$ and fix an integer $k\geq 1$.
+Let $U=U_1\sqcup\dots\sqcup U_k$ and $W=W_1\sqcup\dots\sqcup W_k$ be any partitions (some of the $U_i$'s or $W_j$'s may be empty).
+Note that $\abs U$ and $\abs W$ have nothing to do with $k$; $k$ is just the number of pieces in each partition.
+
+Prove that if $\abs{E(G)}<k$, then there is a bijection $\pi\colon\{1, \dots, k\}\to\{1, \dots, k\}$ such that $G$ has no edges between $U_i$ and $W_{\pi(i)}$ for each $i\in\{1, \dots, k\}$.
+
+Hint: construct a bipartite graph using the $U_i$'s and $W_j$'s as \emph{vertices}, and use Problem \ref{perfect}.
+\end{problem}
+
+\begin{problem}[2pts]
+	Let $g\geq 2$ be an integer and let $G$ be a connected plane graph on $n$ vertices wherein every face is bounded by a cycle of $G$.
+	Prove that if $G$ has no cycles of length $g$ or smaller, then
+	\[
+	\abs{E(G)}\leq {g+1\over g-1}(n-2).
+	\]
+\end{problem}
+
+
+
+\begin{problem}[2pts]
+	Prove a special case of the $4$-color theorem: If $G$ is a planar, triangle-free graph, then $\chi(G)\leq 4$.
+\end{problem}
+
+
+\end{document}
+
+
+
+

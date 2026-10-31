@@ -1,0 +1,157 @@
+\section{Lecture 4 (January 17, 2025): Representations as comodules}\label{lec4}
+\noindent\textit{Scribe: Charlie Magland}
+
+\subsection{The representation--comodule dictionary}
+Let $G$ be an affine group scheme over a field $k$, and put $A=k[G]$.
+We prove Theorem~\ref{rep-comodule-dictionary}.
+
+\begin{proof}
+Given a right coaction $\rho(v)=\sum v_0\otimes v_1$, define, for
+$g:A\to R$,
+\[
+ r_R(g)(v\otimes a)=\sum v_0\otimes g(v_1)a.
+\]
+This map is $R$-linear. Coassociativity and the definition of the product
+in $G(R)$ give $r_R(g)r_R(h)=r_R(gh)$; counitality gives
+$r_R(e)=\id$. In particular $r_R(g^{-1})$ is its inverse. Composition
+of algebra maps $R\to R'$ proves naturality.
+
+Conversely, suppose $r_R$ is such a natural action. Evaluate at the
+universal point $u=\id_A\in G(A)$ and define
+\[
+ \rho(v)=r_A(u)(v\otimes1).
+\]
+For every $g:A\to R$, naturality gives
+$r_R(g)(v\otimes1)=(\id_V\otimes g)\rho(v)$, so this coaction, if
+valid, recovers the action. Over $A\otimes A$, the two points
+$\iota_l(a)=a\otimes1$ and $\iota_r(a)=1\otimes a$ multiply to
+$\Delta$. Applying the action law and naturality to this identity gives
+$(\rho\otimes\id)\rho=(\id\otimes\Delta)\rho$. Evaluating at
+$\epsilon:A\to k$, the identity of $G(k)$, gives counitality.
+The displayed formulas show that the constructions are inverse.
+Notice that $u=\id_A$ is the universal point, not generally the identity
+point $u_A\epsilon$ of $G(A)$.
+\end{proof}
+
+\begin{definition}
+A morphism of right $A$-comodules $f:M\to N$ is a linear map satisfying
+\[
+ \rho_Nf=(f\otimes\id_A)\rho_M.
+\]
+By the formulas above, this is equivalent to $G(R)$-equivariance after
+extension of scalars to every $R$.
+\end{definition}
+
+\begin{example}
+The \emph{regular comodule} is $A\xrightarrow{\Delta}A\otimes A$.
+The \emph{trivial comodule} is $k\to k\otimes A$, $1\mapsto1\otimes1$;
+it uses the unit $k\to A$, not the counit $A\to k$.
+\end{example}
+
+\subsection{The abelian category of comodules}
+The next constructions require only that $A$ be a coalgebra over $k$.
+A subspace $N\subseteq M$ is a \emph{subcomodule} if
+$\rho_M(N)\subseteq N\otimes A$. The quotient then has the well-defined
+coaction
+\[
+ \overline\rho(m+N)=\sum(m_0+N)\otimes m_1.
+\]
+Coassociativity and counitality follow from those on $M$.
+
+\begin{theorem}
+The category of right $A$-comodules is a $k$-linear abelian category.
+Kernels, cokernels, images and direct sums are computed on the underlying
+vector spaces. The same holds for the full subcategory of finite-dimensional
+comodules, with finite direct sums. The forgetful functors are exact.
+\end{theorem}
+\begin{proof}
+For a comodule map $f:M\to N$, the identity
+$(f\otimes\id_A)\rho_M=\rho_Nf$ and exactness of tensoring over a field
+give
+\[
+ \rho_M(\ker f)\subseteq\ker(f\otimes\id_A)=\ker(f)\otimes A.
+\]
+The image is also a subcomodule, and the ordinary quotient $N/\im f$
+inherits a coaction. These constructions have the kernel and cokernel
+universal properties because their factorizations are linear maps whose
+coaction identities descend from that of $f$. Moreover the vector-space
+isomorphism $M/\ker f\simeq\im f$ respects coactions.
+
+The direct sum has componentwise coaction. For a finite sum $M_1\oplus M_2$,
+the usual inclusions $i_j$ and projections $p_j$ are comodule maps and satisfy
+\[
+ p_ji_j=\id_{M_j},\qquad p_ki_j=0\ (k\ne j),\qquad
+ i_1p_1+i_2p_2=\id_{M_1\oplus M_2}.
+\]
+The zero object and these biproducts make the category additive; comodule
+maps form linear subspaces of ordinary Hom spaces. The kernel, cokernel and
+image--coimage statements therefore prove that it is abelian. All these
+constructions preserve finite-dimensionality when the inputs are finite-dimensional.
+\end{proof}
+
+\subsection{Local finiteness}
+\begin{theorem}\label{local-finiteness-comodules}
+Every element of an $A$-comodule belongs to a finite-dimensional subcomodule.
+Consequently every comodule is the directed union of its finite-dimensional
+subcomodules.
+\end{theorem}
+\begin{proof}
+Write $\rho(m)=\sum_{i=1}^r m_i\otimes a_i$ with the $a_i$ linearly
+independent, and let $N=\Span\{m_1,\ldots,m_r\}$. Choose linear
+functionals $\lambda_j\in A^*$ with $\lambda_j(a_i)=\delta_{ij}$.
+Coassociativity gives
+\[
+ \sum_i\rho(m_i)\otimes a_i=\sum_i m_i\otimes\Delta(a_i).
+\]
+Applying $\id_M\otimes\id_A\otimes\lambda_j$ shows
+$\rho(m_j)\in N\otimes A$. Counitality gives
+$m=\sum_i\epsilon(a_i)m_i\in N$. Thus $N$ is the required subcomodule.
+Finite sums of finite-dimensional subcomodules are finite-dimensional,
+which proves the directed-union assertion.
+\end{proof}
+
+\begin{definition}
+An affine group scheme is \emph{algebraic} if its coordinate algebra is
+finitely generated as a $k$-algebra.
+\end{definition}
+
+\begin{corollary}\label{affine-inverse-limit}
+Every affine group scheme over $k$ is an inverse limit of algebraic affine
+group schemes.
+\end{corollary}
+\begin{proof}
+It suffices to show that a commutative Hopf algebra $A$ is the filtered union
+of its finitely generated Hopf subalgebras. Given $a\in A$, choose a
+finite-dimensional right subcomodule $V\subseteq A$ containing $a$.
+In a basis $v_1,\ldots,v_n$ write
+$\Delta(v_j)=\sum_i v_i\otimes c_{ij}$. The coaction identities give
+\[
+ \Delta(c_{ij})=\sum_l c_{il}\otimes c_{lj},\qquad
+ \epsilon(c_{ij})=\delta_{ij}.
+\]
+Applying $\epsilon\otimes\id$ to $\Delta(v_j)$ shows that every $v_j$
+is a linear combination of the $c_{ij}$. Hence the algebra generated by
+the $c_{ij}$ and $S(c_{ij})$ contains $a$. It is stable under
+comultiplication and counit, and also under $S$, since $S^2=\id$ in a
+commutative Hopf algebra (inversion squared is the identity). It is
+therefore a finitely generated Hopf subalgebra. Applying the same argument
+to finite sets makes these subalgebras a directed family. Taking spectra
+reverses the resulting filtered union to an inverse limit.
+\end{proof}
+The subalgebras here are finitely generated as algebras, not necessarily
+finite-dimensional as vector spaces; $k[x]$ already illustrates the distinction.
+
+\subsection{Tensor products}
+For any bialgebra $A$, the tensor product of right comodules has coaction
+\[
+ \rho_{M\otimes N}(m\otimes n)
+   =\sum m_0\otimes n_0\otimes m_1n_1.
+\]
+Equivalently, apply $\rho_M\otimes\rho_N$, interchange the middle factors
+using $\tau:A\otimes N\to N\otimes A$, then multiply the two $A$ factors.
+The bialgebra axioms imply the coaction identities. The unit object is the
+trivial comodule $k$, and the ordinary associativity and unit maps are
+comodule maps. When $A$ is commutative, the flip
+$M\otimes N\to N\otimes M$ is colinear, since $m_1n_1=n_1m_1$.
+Thus representations of affine group schemes have a symmetric monoidal
+structure. For a general Hopf algebra the ordinary flip need not be colinear.

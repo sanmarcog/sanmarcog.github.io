@@ -1,0 +1,103 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=.7cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}\setlist{itemsep=0.5em} 
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{mathabx}
+
+
+
+
+%% header, footer definitions
+\pagestyle{fancy}
+\fancyhead[L]{Math 441}
+\fancyhead[C]{Homework 2} 
+\fancyhead[R]{Due on July 3} 
+
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+% custom solution environment
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+
+
+% operators
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+
+
+
+\begin{document}
+
+%\noindent Your name! \hfill  The date 
+
+%\vskip10pt
+
+
+\begin{problem}
+Let $X$ be a set. Assume $\mathcal B$ and $\mathcal B'$ are bases for respective topologies on $X$. Prove that $\mathcal{T}(\mathcal{B}')$ is finer than  $\mathcal{T}(\mathcal{B})$ if and only if for each $B \in \mathcal{B}$ and each $x\in B$, there exists some $B' \in \mathcal{B}'$ such that $x\in B'\subseteq B$. 
+\end{problem}
+
+\begin{problem}
+Consider on $\mathbb R$ the standard topology and the lower limit topology. Use the previous problem to decide which of these topologies is finer or coarser than the other.  
+\end{problem}
+
+\begin{problem}
+Let $X$ be a set with more than one element. Prove that $\mathcal S=\{X\setminus \{x\} \mid x \in X\}$ is a subbasis for the cofinite topology on $X$. 
+\end{problem}
+
+
+
+\begin{problem}
+Let $X$ and $Y$ be topological spaces with bases $\mathcal B$ and $\mathcal C$, respectively. Show that the collection 
+\[\mathcal D=\{U \times V \subseteq X\times Y \mid U\in \mathcal B, V \in \mathcal C\}\]
+is a basis for the product topology on $X \times Y$. 
+
+\noindent \emph{Hint:} Lemma 13.2 from Munkres.
+\end{problem}
+
+\begin{problem}
+Endow $\{0,1\}$ with the discrete topology. Let $\Lambda$ be a nonempty set. Prove that $ \prod_{i \in \Lambda} \{0,1\}$ (endowed with the product topology) is discrete if and only if $\Lambda$ is finite.
+\end{problem}
+
+\begin{problem}
+Give a proof for Theorem 19.3 in Munkres.
+\end{problem}
+
+\end{document}
+
+
+
+
+

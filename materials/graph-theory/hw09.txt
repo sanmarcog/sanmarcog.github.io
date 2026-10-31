@@ -1,0 +1,122 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=1cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=0.5em}
+\usepackage{xcolor}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\usepackage[colorlinks = true,
+linkcolor = forestgreen,
+urlcolor  = forestgreen,
+citecolor = forestgreen,
+anchorcolor = forestgreen]{hyperref}
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{tikz}
+\usepackage{mathabx}
+\usepackage{lastpage}
+
+
+
+
+
+
+%% header, footer definitions
+\def\course{MATH 314}
+\def\courselink{https://www.gsanmarco.com/graph-theory}
+\def\assignment{HW \#9}
+\def\assignlink{hw09.tex}
+\def\due{Due on April 4}
+
+
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\course}
+\fancyhead[C]{\assignment} 
+\fancyhead[R]{\due} 
+%\renewcommand{\footrulewidth}{0.4pt}
+%\fancyfoot{}
+%\fancyfoot[R]{\fontsize{8}{10} \selectfont  Page \thepage~of \pageref{LastPage}}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont  Source file available at \href{\courselink}{\textbf{\courselink}}}
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem{Solution}{Solution}
+% custom
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+
+\DeclareMathOperator{\diam}{diam}
+\newcommand*{\abs}[1]{\lvert #1\rvert}
+
+
+
+\begin{document}
+\noindent  Unless explicitly requested by a problem, do not include sketches as part of your proof. You are free to use the result from any problem on this (or previous) assignment as a part of your solution to a different problem even if you have not solved the former problem.
+\vskip10pt
+
+
+\begin{problem}[0.5 + 0.5 pts]
+	Recall that $K_{n_1,n_2,n_3}$ is the complete tripartite graph with parts of sizes $n_1,n_2,n_3$.
+	
+	Fix any positive integer $n$.
+	\begin{enumerate} [label=(\alph*)]
+		\item Prove that $K_{n,2n,3n}$ is Hamiltonian.
+		\item Prove that $K_{n,2n,3n+1}$ is not Hamiltonian.
+	\end{enumerate}
+\end{problem}
+
+\begin{problem}[1 + 2 pts]
+	Fix any integer $n\geq 3$.
+	\begin{enumerate} [label=(\alph*)]
+		\item Construct an $n$-vertex graph $G$ with ${n-1\choose 2}+1$ many edges such that $G$ is \emph{not} Hamiltonian.
+		
+		(Note: You must construct such a graph for \emph{every} $n\geq 3$.)
+		\item Prove that if $G$ is an $n$-vertex graph with at least ${n-1\choose 2}+2$ many edges, then $G$ is Hamiltonian.
+		
+		(Hint: Ore. Also,  a graph on $k$-vertices has at most ${k\choose 2}$ edges, and ${n-1\choose 2} - {n-2\choose 2} =n-2$ )
+	\end{enumerate}
+\end{problem}
+
+
+\begin{problem}[2pts]
+	Let $G$ be a graph on $n\geq 4$ vertices with the property that $N(u)\cup N(v)\supseteq V(G)\setminus\{u,v\}$ for every $u\neq v\in V(G)$.
+	Prove that $G$ is Hamiltonian.
+
+\end{problem}
+
+
+
+\begin{problem}[2pts]
+	Prove that $\alpha(G)+\beta(G)=n$ for any $n$-vertex graph $G$.
+	
+	(Note: You don't need to know anything about matchings to prove this.)
+\end{problem}
+
+
+\begin{problem}[2 pts]
+Let $G$ be a bipartite graph on $n$ vertices. Show that $\alpha(G)=n/2$ if and only if $G$ has a perfect matching.
+\end{problem}
+
+
+\end{document}
+
+
+
+

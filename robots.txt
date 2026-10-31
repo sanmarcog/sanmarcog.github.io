@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sanmarcog.github.io/sitemap.xml

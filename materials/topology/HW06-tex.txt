@@ -1,0 +1,127 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[headheight=1pt, includeheadfoot, headsep=.7cm, top=1.5cm, bottom=1.3cm, left=2cm, right=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm, amscd, amssymb, amsfonts}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{enumitem}\setlist{itemsep=0.5em} 
+\usepackage{multicol}
+\usepackage{multienum}
+\usepackage{euler}
+\usepackage[OT1]{eulervm}
+\renewcommand{\rmdefault}{pplx}
+\usepackage{mathabx}
+
+
+
+
+%% header, footer definitions
+\pagestyle{fancy}
+\fancyhead[L]{Math 441}
+\fancyhead[C]{Homework 6} 
+\fancyhead[R]{Due on August 7} 
+
+
+%% environments
+% theorem style
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{defn}[theorem]{Definition}
+
+% definition style
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+% custom solution environment
+\newenvironment{solution}{\noindent\textbf{Solution.}}{\qed}
+
+%% custom commands
+
+\newcommand*{\R}{\mathbb{R}}               % real numbers
+\newcommand*{\C}{\mathbb{C}}               % complex numbers
+\newcommand*{\Q}{\mathbb{Q}}               % rational numbers
+\newcommand*{\Z}{\mathbb{Z}}               % integers
+\newcommand*{\N}{\mathbb{N}}               % natural numbers
+\newcommand*{\abs}[1]{\lvert #1\rvert}     % absolute values, cardinality
+\newcommand*{\norm}[1]{\lvert \lvert #1\rvert\rvert}     %norm 
+
+% operators
+\DeclareMathOperator*{\E}{\mathbb{E}}          % expectation
+\DeclareMathOperator*{\Var}{\mathbf{Var}}      % variance
+\DeclareMathOperator*{\Span}{span}             % span
+\DeclareMathOperator{\tr}{tr}                  % trace
+\DeclareMathOperator{\rank}{rank}              % rank
+\DeclareMathOperator{\supp}{supp}              % support
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\sgn}{sgn}
+
+
+
+
+\begin{document}
+
+%\noindent Your name! \hfill  The date 
+
+%\vskip10pt
+
+\begin{problem}
+Let $X$ be a topological space and let $Y\subseteq X$ endowed with the induced topology. Prove that $Y$ is connected if and only if for every open sets $U$, $V$ of $X$ such that $Y\subseteq U\cup V$ and $Y\cap U \cap V= \emptyset$, we have either $Y\subseteq U$ or $Y \subseteq V$. 
+\end{problem}
+
+\begin{problem}
+Determine when a set $X$ endowed with the cofinite topology is connected. Prove the resulting statement.
+\end{problem}
+
+\begin{problem}
+Prove the following:
+
+\begin{enumerate}
+	\item A product of path-connected spaces is connected.
+	\item If $f\colon X \to Y$ is continuous and $X$ is path-connected, then $f(X)$ is path-connected. 
+	\item Any quotient of a path-connected space is path-connected.
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem} A subset $X \subseteq \R^n$ is called \emph{convex} if for every $x, y \in X$ and every $t \in [0, 1]$, we have  $tx + (1 - t)y\in X$ (in other words, the straight line segment from $x$ to $y$ is contained in $X$). Show that convex sets are path-connected. 
+\end{problem}
+
+\begin{problem}
+Prove the following:
+\begin{enumerate}
+	\item For any $n>1$, the space $\R^n \setminus \{0\}$ is path connected. 
+	\item For any $r\in \R$, the space $\R \setminus \{r\}$ is not connected. 
+	\item For any $n>1$,  $\R^n$ and $\R$ are not homeomorphic. 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+For $k\geq 1$, let  $S^k$ denote the unit sphere in $\R^{k+1}$, namely 
+\[ S^k=\{(x_1, \dots, x_{k+1}) \in \R^{k+1} \mid \norm{x}= x_1^2 + \dots + x_{k+1}^2 =1 \}.\]
+For every $n\geq 2$, prove that $\R^n\setminus \{0\}$ is homeomorphic to $S^{n-1}\times \R_{>0}$, where $\R_{>0}$ denotes the space of positive real numbers. You should write a formula for a homeomorphism and it's inverse, but you need not verify continuity.
+
+Deduce that the sphere $S^n$ is path-connected for any $n\geq 1$.
+\end{problem}
+
+\begin{problem}
+Let X be a topological space.
+\begin{enumerate}
+	\item Define a relation on $X$ by $x \sim y$ if and only if there exists a connected
+	subspace $Y \subseteq X$ that contains both $x$ and $y$, for every $x, y \in X$. Verify
+	that this is an equivalence relation. The equivalence classes are called the
+	\emph{connected components} of $X$.
+	
+	\item  Define a relation on $X$ by $x \sim y$ if and only if there exists a path in $X$ from $x$ to $y$, for every $x, y \in X$. Verify
+	that this is an equivalence relation. The equivalence classes are called the
+	\emph{path components} of $X$.
+\end{enumerate}
+\end{problem}
+
+\end{document}
+
+
+
+
+

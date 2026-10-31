@@ -1,0 +1,109 @@
+\section{Lecture 13 (February 12, 2025, est.): Completing Tannaka reconstruction}\label{lec13}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+
+We now restore the symmetric tensor structure on $\mathcal C$. Let $\omega:\mathcal C\to\mathrm{Vec}_k$ be a symmetric tensor functor. The preceding lectures construct a coalgebra $B$ and an equivalence
+\[
+ \mathcal C\simeq\operatorname{Comod}_{\mathrm{fd}}(B)
+\]
+compatible with the underlying vector spaces. We show that the tensor product defines multiplication on $B$, symmetry makes it commutative, and rigidity supplies the antipode.
+
+\subsection*{Tensor products of comodules}
+Suppose first that $B$ is merely a coalgebra. A coalgebra homomorphism $m:B\otimes B\to B$ equips the vector space $V\otimes W$ with the coaction
+\[
+ v\otimes w\longmapsto
+ \sum v_{(0)}\otimes w_{(0)}\otimes m(v_{(1)}\otimes w_{(1)}).
+\]
+Coassociativity and the counit identity follow from the fact that $m$ is a coalgebra map. This construction is functorial and bilinear on morphisms. Conversely, a bilinear bifunctor on finite-dimensional $B$-comodules whose underlying vector-space functor is the ordinary tensor product determines a unique such $m$. Explicitly, the tensor product of two matrix coefficients is sent to the corresponding coefficient of the specified coaction on $V\otimes W$. The naturality relations of Lecture~\ref{lec12}, separately in the two variables, make this well-defined, and the coefficient coproduct formula makes it a coalgebra homomorphism.
+
+The usual vector-space associator is a comodule map exactly when $m$ is associative: on a triple tensor product the two coactions have coefficients $m(m(b\otimes c)\otimes d)$ and $m(b\otimes m(c\otimes d))$. Since coefficients span $B$, equality on all triple tensor products is equality of those maps. Similarly, the ordinary flip is a comodule map exactly when $m$ is commutative. A unit object with underlying space $k$ determines a coalgebra map $u:k\to B$; the usual unit constraints are comodule maps precisely when $u$ is a two-sided unit for $m$.
+
+\subsection*{A lemma about rigidity}
+\begin{lemma}\label{lem:monoidal-natural-invertible}
+Let $\mathcal C$ be rigid and let $F,G:\mathcal C\to\mathcal D$ be strong monoidal functors. Every monoidal natural transformation $\alpha:F\to G$ is invertible.
+\end{lemma}
+\begin{proof}
+Strong monoidal functors preserve duals. Use the induced identifications $F(X^*)\simeq F(X)^*$ and $G(X^*)\simeq G(X)^*$, and suppress associators and unit constraints. Define
+\[
+\begin{split}
+ \beta_X:G(X)&\xrightarrow{\operatorname{coev}_{F(X)}\otimes\mathrm{id}}
+ F(X)\otimes F(X)^*\otimes G(X)\\
+ &\xrightarrow{\mathrm{id}\otimes\alpha_{X^*}\otimes\mathrm{id}}
+ F(X)\otimes G(X)^*\otimes G(X)
+ \xrightarrow{\mathrm{id}\otimes\operatorname{ev}_{G(X)}}F(X).
+\end{split}
+\]
+Naturality with evaluation, together with the tensor and unit identities for $\alpha$, gives
+\[
+ \operatorname{ev}_{G(X)}(\alpha_{X^*}\otimes\alpha_X)
+ =\operatorname{ev}_{F(X)}.
+\]
+It follows from the first triangle identity that $\beta_X\alpha_X=\mathrm{id}_{F(X)}$. Naturality with coevaluation gives
+\[
+ (\alpha_X\otimes\alpha_{X^*})\operatorname{coev}_{F(X)}
+ =\operatorname{coev}_{G(X)},
+\]
+so the other composite is $\alpha_X\beta_X=\mathrm{id}_{G(X)}$. Thus all components are invertible, and their inverses automatically form a natural monoidal transformation.
+\end{proof}
+No rigidity assumption on every object of $\mathcal D$ is needed: the objects in the images of the two functors already have the required duals.
+
+\subsection*{The reconstructed Hopf algebra}
+We prove Theorem~\ref{thm:neutral-tannaka}. Write matrix coefficients in the notation of Lecture~\ref{lec12}, and use the monoidal identifications of $\omega$ to suppress its tensor constraints. Define
+\[
+ [\phi\otimes v]_X[\psi\otimes w]_Y
+ =[(\phi\otimes\psi)\otimes(v\otimes w)]_{X\otimes Y},
+ \qquad 1_B=[1^*\otimes1]_{\mathbb{1}},
+\]
+where $1^*:k\to k$ is the identity. Naturality of the tensor product respects the coefficient relations, so multiplication is well-defined. The associator and unit constraints give associativity and the unit identities. The symmetric braiding maps under $\omega$ to the ordinary flip, so its naturality relation identifies the two orders of the product. Thus $B$ is a commutative algebra.
+
+Using tensor products of bases in the coefficient formula gives
+\[
+ \Delta(bc)=\Delta(b)\Delta(c),\qquad
+ \varepsilon(bc)=\varepsilon(b)\varepsilon(c),
+\]
+and $\Delta(1_B)=1_B\otimes1_B$, $\varepsilon(1_B)=1$. Therefore $B$ is a commutative bialgebra. By construction, its comodule tensor product agrees with the one transported from $\mathcal C$.
+
+For each commutative $k$-algebra $R$, Lecture~\ref{lec12} identifies a linear map $g:B\to R$ with the natural endomorphism
+\[
+ \lambda_X(v\otimes1)=\sum_i e_i\otimes g([e_i^*\otimes v]_X)
+\]
+of $\omega_R$. The multiplication and unit formulas show that
+\[
+ \lambda_{X\otimes Y}=\lambda_X\otimes_R\lambda_Y,
+ \quad\lambda_{\mathbb{1}}=\mathrm{id}_R
+ \quad\Longleftrightarrow\quad
+ g(bc)=g(b)g(c),\quad g(1_B)=1_R.
+\]
+Consequently,
+\[
+ \underline{\operatorname{End}}^{\otimes}(\omega)(R)
+ \simeq\operatorname{Hom}_{k\text{-alg}}(B,R).
+\]
+Rigidity and Lemma~\ref{lem:monoidal-natural-invertible}, applied to $\omega_R$, show that every such tensor endomorphism is invertible. The functor represented by $B$ is therefore a group functor, and its inverse is represented by an antipode $S:B\to B$.
+
+One can write the antipode explicitly. Identify $\omega(X^*)$ with $(\omega X)^*$, and for $v\in\omega X$ let $\widehat v\in(\omega X)^{**}$ be evaluation at $v$. Then
+\[
+ S([\phi\otimes v]_X)=[\widehat v\otimes\phi]_{X^*}.
+\]
+The evaluation and coevaluation identities give
+\[
+ m(S\otimes\mathrm{id})\Delta=u\varepsilon
+ =m(\mathrm{id}\otimes S)\Delta,
+\]
+which are also the identities expressing that the action on the dual is the inverse transpose. This realizes the group-functor inverse just constructed.
+
+Set $G=\operatorname{Spec}B$. We have proved, naturally in $R$,
+\[
+ G(R)=\underline{\operatorname{Aut}}^{\otimes}(\omega)(R).
+\]
+Equation~\eqref{eq:abelian-reconstruction} now becomes
+\[
+ \widetilde\omega:\mathcal C\simeq
+ \operatorname{Comod}_{\mathrm{fd}}(\mathcal O(G))
+ =\operatorname{Rep}_k(G).
+\]
+The construction of multiplication and symmetry makes this an equivalence of symmetric tensor categories, and its composite with the forgetful functor is $\omega$. This proves neutral Tannaka reconstruction.
+
+\begin{remark}
+The pair $(\mathcal C,\omega)$ determines $G$. Keeping the fiber functor in the statement is essential: the category without a chosen fiber functor does not specify this identification. For comparison with the classical formulation, see \cite[Chapter X, Section 3]{milneAGS} and \cite[Section 5.4]{EGNO}.
+\end{remark}

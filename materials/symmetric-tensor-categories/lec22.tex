@@ -1,0 +1,150 @@
+\section{Lecture 22 (March 7, 2025, est.): Ostrik's theorem}
+\label{lec22}
+\noindent\textit{Scribe: Guillermo Sanmarco}
+
+Let $k$ be algebraically closed of characteristic $p>0$.
+We finish the proof that every symmetric fusion category over $k$ admits
+a symmetric tensor functor to $\mathsf{Ver}_p$. The argument follows the
+Frobenius functor and its fusion image, using the lemmas of the preceding
+lecture.
+
+\subsection{Separating the two factors}
+Assume first that $p>3$, that $\mathcal C$ is Frobenius injective, and that
+its Frobenius type is $\mathsf{Ver}_p^+$ or $\mathsf{Ver}_p$.
+Define $\mathcal C_s$ to be the full fusion subcategory whose simple
+objects satisfy
+\[
+ \mathrm{Fr}(X)=Y\boxtimes\mathbf1
+ \quad\text{or}\quad
+ \mathrm{Fr}(X)=Y\boxtimes\varepsilon,
+ \qquad \varepsilon=L_{p-1}.
+\]
+This is indeed a fusion subcategory: it is the inverse image of
+$\mathcal C^{(1)}\boxtimes\SVec$ under $\mathrm{Fr}$.
+By naturality, its own Frobenius functor is the restriction of the one on
+$\mathcal C$. Thus it is Frobenius injective and has type $\Vect$ or
+$\SVec$. Lemmas~\ref{lec21-type-vec} and \ref{lec21-type-svec} imply
+\begin{equation}\label{lec22-cs-nondegenerate}
+ \dim(\mathcal C_s)\ne0.
+\end{equation}
+
+\begin{lemma}\label{lec22-image-factorization}
+Under these assumptions,
+\[
+ \mathrm{Fr}(\mathcal C)
+ =\langle\mathrm{Fr}(\mathcal C_s),
+            \mathbf1\boxtimes\mathsf{Ver}_p^+\rangle
+ \simeq\mathcal C_s\boxtimes\mathsf{Ver}_p^+
+\]
+as symmetric fusion categories.
+\end{lemma}
+\begin{proof}
+Both subcategories on the right belong to the Frobenius image, the second
+by Lemma~\ref{lec21-ver-plus-in-image}. For the reverse inclusion take a
+simple $X\in\mathcal C$. Its image is simple, so write
+$\mathrm{Fr}(X)=T\boxtimes L_r$. Put
+\[
+ \delta_r=
+ \begin{cases}\mathbf1,&r\text{ odd},\\
+ \varepsilon,&r\text{ even}.
+ \end{cases}
+\]
+Then $L_r\otimes\delta_r$ belongs to $\mathsf{Ver}_p^+$.
+Full faithfulness and semisimplicity imply that every object in the
+fusion image is the image of an object: a direct summand is specified by
+an idempotent, which lifts through a fully faithful functor and splits in
+the source. Therefore there is a simple $Y\in\mathcal C$ with
+\[
+ \mathrm{Fr}(Y)=\mathbf1\boxtimes(L_r\otimes\delta_r).
+\]
+Now $\mathrm{Fr}(X\otimes Y)$ has the simple summand
+$T\boxtimes\delta_r$, because $L_r$ is self-dual and
+$\mathbf1$ is a summand of $L_r\otimes L_r$. Lift this summand to a
+simple $Z$ of $X\otimes Y$. It satisfies
+$\mathrm{Fr}(Z)=T\boxtimes\delta_r$, hence $Z\in\mathcal C_s$, and
+\[
+ \mathrm{Fr}(X)
+ \simeq\mathrm{Fr}(Z)\otimes
+       \bigl(\mathbf1\boxtimes(L_r\otimes\delta_r)\bigr).
+\]
+This proves generation.
+
+It remains to justify that generation is a Deligne product. The two
+subcategories have only the unit as a common simple: a simple in
+$\mathrm{Fr}(\mathcal C_s)$ has second factor $\mathbf1$ or
+$\varepsilon$, whereas a simple in
+$\mathbf1\boxtimes\mathsf{Ver}_p^+$ has first factor $\mathbf1$ and
+odd-indexed second factor. The only common possibility is the unit.
+In a symmetric fusion category, two full fusion subcategories
+$\mathcal A,\mathcal B$ with this property have fully faithful product
+functor $\mathcal A\boxtimes\mathcal B\to\langle\mathcal A,\mathcal B\rangle$.
+Indeed, for simple $A_i\in\mathcal A$ and $B_i\in\mathcal B$, rigidity
+identifies
+\[
+ \Hom(A_1\otimes B_1,A_2\otimes B_2)
+ \simeq\Hom(A_2^*\otimes A_1,B_2\otimes B_1^*).
+\]
+Only the unit can contribute to this Hom-space; it contributes once
+exactly when $A_1\simeq A_2$ and $B_1\simeq B_2$. The product functor
+is therefore fully faithful and, by generation, essentially surjective.
+Apply this with
+$\mathcal A=\mathrm{Fr}(\mathcal C_s)$ and
+$\mathcal B=\mathbf1\boxtimes\mathsf{Ver}_p^+$, and use
+$\mathrm{Fr}(\mathcal C_s)\simeq\mathcal C_s$.
+\end{proof}
+
+\subsection{The theorem}
+\begin{theorem}[Ostrik]\label{lec22-ostrik}
+Every symmetric fusion category $\mathcal C$ over $k$ admits a $k$-linear
+exact symmetric monoidal functor
+\[
+ \mathcal C\longrightarrow\mathsf{Ver}_p.
+\]
+\end{theorem}
+\begin{proof}
+Suppose there is a counterexample and choose one of minimal
+Frobenius--Perron dimension. Such a minimum exists. To check this point,
+fix a bound $M$. A fusion category of dimension at most $M$ has at most
+$M$ simple objects, because every simple has Frobenius--Perron dimension
+at least one. Its simple dimensions are at most $\sqrt M$, and its fusion
+multiplicities satisfy
+$N_{ij}^r\leq d_i d_j/d_r\leq M$. There are therefore only finitely many
+possible based fusion rings below the bound, and hence finitely many
+possible Frobenius--Perron dimensions.
+
+By Lemma~\ref{lec21-image-dimension}, the fusion image of
+$\mathrm{Fr}:\mathcal C\to\mathcal C^{(1)}\boxtimes\mathsf{Ver}_p$ has
+dimension at most that of $\mathcal C$. If it had smaller dimension,
+minimality would give a symmetric tensor functor from that image to
+$\mathsf{Ver}_p$, and composition would contradict the choice of
+$\mathcal C$. Consequently equality holds and $\mathrm{Fr}$ is fully
+faithful.
+
+If its type is $\Vect$, or $\SVec$ when $p>2$, the lemmas of
+Lecture~\ref{lec21} make $\mathcal C$ nondegenerate. Proposition
+\ref{lec21-nondegenerate-fiber} then supplies a functor to $\Vect$ or
+$\SVec$, followed by the standard inclusion in $\mathsf{Ver}_p$.
+This is a contradiction. These cases include every possibility for
+$p=2,3$.
+
+Thus $p>3$, and the type must be $\mathsf{Ver}_p^+$ or $\mathsf{Ver}_p$.
+By \eqref{lec22-cs-nondegenerate}, the category $\mathcal C_s$ has a super
+fiber functor. Compose
+\[
+ \mathcal C\xrightarrow{\mathrm{Fr}}\mathrm{Fr}(\mathcal C)
+ \simeq\mathcal C_s\boxtimes\mathsf{Ver}_p^+
+ \longrightarrow\SVec\boxtimes\mathsf{Ver}_p^+
+ \simeq\mathsf{Ver}_p.
+\]
+This is the required functor, contradicting the counterexample. Exactness
+is automatic for an additive functor with semisimple source.
+\end{proof}
+
+\begin{remark}
+This proves the existence statement in \cite[Theorem 1.5]{OstrikVerlinde}.
+It does not say that $\mathcal C$ itself embeds in $\mathsf{Ver}_p$:
+the functor need not be full. Nor does the theorem assert that every
+positive-characteristic symmetric tensor category is semisimple.
+The generalization beyond fusion categories requires Frobenius exactness,
+which is the subject of the next lecture.
+\end{remark}
